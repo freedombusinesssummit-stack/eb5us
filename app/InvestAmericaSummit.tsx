@@ -351,6 +351,74 @@ function Funnel() {
   );
 }
 
+function Speakers() {
+  const speakers = [
+    { initials: "JR", name: "James Rowling", role: "Senior EB-5 Immigration Attorney", firm: "Rowling Immigration Law · New York", tag: "EB-5 Legal" },
+    { initials: "SK", name: "Sunita Kapoor", role: "Regional Center Director", firm: "Capital USA Partners · Los Angeles", tag: "Regional Center" },
+    { initials: "MC", name: "Marco Chen", role: "E-2 Franchise & Business Consultant", firm: "AmeriVenture Group · Miami", tag: "E-2 Strategy" },
+    { initials: "AL", name: "Anna Liebowitz", role: "International Tax & Wealth Structuring", firm: "Global Wealth Advisors · New York", tag: "Tax & Structuring" },
+    { initials: "DR", name: "David Reyes", role: "EB-5 Policy & Compliance Expert", firm: "U.S. Immigration Policy Institute", tag: "USCIS Policy" },
+    { initials: "PM", name: "Priya Mehta", role: "Cross-Border Wealth Manager", firm: "Meridian Family Office · Singapore", tag: "Investor Profile" },
+  ];
+  return (
+    <section style={{ background: C.bgSection, padding: "72px 40px" }}>
+      <div style={{ maxWidth: 960, margin: "0 auto" }}>
+        <GreenLabel>Featured Speakers</GreenLabel>
+        <h2 style={{ fontSize: 36, fontWeight: 800, color: C.text, marginBottom: 8, letterSpacing: -0.5 }}>
+          Practitioners, Not Theorists
+        </h2>
+        <p style={{ fontSize: 15, color: C.textGray, marginBottom: 12, maxWidth: 620 }}>
+          Every speaker has closed real EB-5 and E-2 deals. No academics. No generalists. Single focus: <strong style={{ color: C.text }}>U.S. Inbound — EB-5 Investor Flow.</strong>
+        </p>
+
+        {/* Single jurisdiction badge */}
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 10, background: C.bg, border: `1.5px solid ${C.green}`, borderRadius: 10, padding: "10px 20px", marginBottom: 40 }}>
+          <span style={{ fontSize: 20 }}>🇺🇸</span>
+          <div>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 2, color: C.green, textTransform: "uppercase" }}>Single Jurisdiction Focus</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: C.text }}>US Inbound · EB-5 Immigrant Investor Program</div>
+          </div>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 24 }}>
+          {speakers.map(({ initials, name, role, firm, tag }) => (
+            <div key={name} style={{
+              background: C.bg,
+              border: `1px solid ${C.border}`,
+              borderRadius: 12,
+              padding: "24px 20px",
+              display: "flex", gap: 16, alignItems: "flex-start",
+              transition: "border-color 0.2s",
+            }}>
+              <div style={{
+                width: 48, height: 48, borderRadius: "50%",
+                background: C.greenPale,
+                border: `1.5px solid ${C.green}`,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: 14, fontWeight: 800, color: C.greenDark,
+                flexShrink: 0,
+              }}>{initials}</div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: C.text, marginBottom: 2 }}>{name}</div>
+                <div style={{ fontSize: 12, color: C.textGray, marginBottom: 8, lineHeight: 1.4 }}>{role}</div>
+                <div style={{ fontSize: 11, color: C.textMid, marginBottom: 8 }}>{firm}</div>
+                <span style={{
+                  background: C.bgSoft, border: `1px solid ${C.border}`,
+                  color: C.textGray, padding: "3px 10px", borderRadius: 999,
+                  fontSize: 10, fontWeight: 600,
+                }}>{tag}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p style={{ fontSize: 13, color: C.textGray, textAlign: "center" }}>
+          Full speaker lineup announced June 2026 · <a href="mailto:denis@fsummit.net" style={{ color: C.green, fontWeight: 600, textDecoration: "none" }}>Apply to speak →</a>
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function Agenda() {
   const sessions = [
     { time: "11:00 AM", type: "Keynote", dur: "35 min", title: "EB-5 in 2026: What Changed, What Didn't, and What You Must Know Before Investing", tag: "EB-5 Foundation" },
@@ -560,7 +628,7 @@ function Pricing() {
       badge: "Limited Slots Per Industry",
       badgeColor: "#F1F5F9",
       badgeText: C.textGray,
-      price: "$1,750",
+      price: "$2,150",
       priceLabel: "Early Bird from",
       desc: "Pay-per-speaking-slot with light branding. Best for companies wanting to test the audience and collect leads without full sponsorship.",
       features: [
@@ -581,7 +649,7 @@ function Pricing() {
       badge: "Only ONE Brand Partner Per Event",
       badgeColor: C.greenPale,
       badgeText: C.greenDark,
-      price: "$3,950",
+      price: "$5,950",
       priceLabel: "Early Bird from",
       desc: "8–12 weeks integrated presence with Co-Created Content, Thought Leadership + Summit Exposure + Lead Generation + PR & Media Coverage.",
       features: [
@@ -611,10 +679,10 @@ function Pricing() {
           Speaking & Partnership Engagement
         </h2>
         <p style={{ fontSize: 15, color: C.textMid, marginBottom: 6 }}>
-          For this event we allocated <strong>8–10 partnerships/speaking slots only</strong>.
+          For this event we allocated <strong>6 speaking slots only</strong>.
         </p>
         <p style={{ fontSize: 15, color: C.textGray, marginBottom: 32 }}>
-          8–10 slots per event. Every partner gets qualified leads, audience data, and thought leadership positioning.
+          6 slots per event. Every partner gets qualified leads, audience data, and thought leadership positioning.
         </p>
 
         {/* Value callout box */}
@@ -869,6 +937,7 @@ export default function App() {
       <KeyTopics />
       <Audience />
       <Funnel />
+      <Speakers />
       <Agenda />
       <EB5Explainer />
       <Pricing />
