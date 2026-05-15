@@ -553,50 +553,261 @@ function EB5Explainer() {
 }
 
 function Pricing() {
-  const tiers = [
-    { name: "Intelligence", price: "$1,950", tag: "Entry", features: ["Panel seat — 30 min", "Logo on event page", "Survey highlight data", "1 email broadcast", "Post-event analytics report", "Session attendee list"], cta: "Claim Slot" },
-    { name: "Growth", price: "$3,450", tag: "Speaking", features: ["30-min keynote session", "Exclusive category lock", "Survey opt-in leads", "2 email broadcasts", "Session attendee list", "Post-event analytics report"], cta: "Claim Slot" },
-    { name: "Strategic", price: "$5,950", tag: "Full Partner", highlight: true, features: ["45-min keynote + panel", "Co-branded survey module", "Full attendee + leads list", "4 email broadcasts", "Exclusive category lock", "Press release integration", "Post-event AMA session", "12-week integration"], cta: "Reserve This Tier" },
-    { name: "Title Sponsor", price: "$9,500", tag: "Anchor", features: ['"Presented by" headline', "45-min keynote + panel", "Co-branded survey module", "All leads — complete list", "6 email broadcasts", "Sponsored video ad campaign", "Tier 1 media interview", "Co-organizer PR mention"], cta: "Enquire Now" },
+  const speakingTiers = [
+    {
+      name: "Speaking & Visibility",
+      sub: "Per speaking slot",
+      badge: "Limited Slots Per Industry",
+      badgeColor: "#F1F5F9",
+      badgeText: C.textGray,
+      price: "$1,750",
+      priceLabel: "Early Bird from",
+      desc: "Pay-per-speaking-slot with light branding. Best for companies wanting to test the audience and collect leads without full sponsorship.",
+      features: [
+        "30-min keynote or panel seat",
+        "Logo on event page + live stream",
+        "Session attendee list (opted-in)",
+        "Survey highlight data",
+        "1 dedicated email broadcast",
+        "Post-event analytics report",
+        "Exclusive category lock",
+      ],
+      cta: "Claim Slot",
+      highlight: false,
+    },
+    {
+      name: "Brand Integration Partnership",
+      sub: "8–12 weeks integration",
+      badge: "Only ONE Brand Partner Per Event",
+      badgeColor: C.greenPale,
+      badgeText: C.greenDark,
+      price: "$3,950",
+      priceLabel: "Early Bird from",
+      desc: "8–12 weeks integrated presence with Co-Created Content, Thought Leadership + Summit Exposure + Lead Generation + PR & Media Coverage.",
+      features: [
+        "45-min keynote + panel participation",
+        "Co-branded survey module",
+        "Full attendee + scored leads list",
+        "4–6 dedicated email broadcasts",
+        "Geo-targeted paid ad integration",
+        "Press release distribution",
+        "Thought leadership article series",
+        "Post-event AMA session",
+        "Branded full post-event analytics report",
+        "Exclusive category lock — no competitors",
+      ],
+      cta: "Claim Slot",
+      highlight: true,
+    },
   ];
+
   return (
-    <section id="pricing" style={{ background: C.bg, padding: "72px 40px" }}>
+    <section id="pricing" style={{ background: C.bgSection, padding: "72px 40px" }}>
       <div style={{ maxWidth: 960, margin: "0 auto" }}>
-        <GreenLabel>Partner Packages</GreenLabel>
-        <h2 style={{ fontSize: 36, fontWeight: 800, color: C.text, marginBottom: 8, letterSpacing: -0.5 }}>Choose Your Position</h2>
-        <p style={{ fontSize: 15, color: C.textGray, marginBottom: 16 }}>One partner per category. Exclusivity is structural — not a marketing promise.</p>
-        <div style={{ display: "flex", gap: 8, marginBottom: 40, flexWrap: "wrap" }}>
-          {["Only 1 EB-5 Regional Center", "Only 1 Immigration Law Firm", "Only 1 Franchise Broker", "Only 1 Wealth Manager"].map(t => (
-            <span key={t} style={{ background: C.greenPale, color: C.greenDark, padding: "5px 14px", borderRadius: 999, fontSize: 12, fontWeight: 600 }}>✓ {t}</span>
+
+        {/* Header */}
+        <GreenLabel>Engagement Options</GreenLabel>
+        <h2 style={{ fontSize: 36, fontWeight: 800, color: C.text, marginBottom: 8, letterSpacing: -0.5 }}>
+          Speaking & Partnership Engagement
+        </h2>
+        <p style={{ fontSize: 15, color: C.textMid, marginBottom: 6 }}>
+          For this event we allocated <strong>8–10 partnerships/speaking slots only</strong>.
+        </p>
+        <p style={{ fontSize: 15, color: C.textGray, marginBottom: 32 }}>
+          8–10 slots per event. Every partner gets qualified leads, audience data, and thought leadership positioning.
+        </p>
+
+        {/* Value callout box */}
+        <div style={{
+          border: `1.5px solid ${C.green}`,
+          borderRadius: 12,
+          padding: "20px 28px",
+          marginBottom: 40,
+          background: C.bg,
+        }}>
+          <div style={{ fontSize: 14, color: C.textMid, marginBottom: 4 }}>
+            Speakers & Partners don't invest into "Speaking Slot".
+          </div>
+          <div style={{ fontSize: 15, fontWeight: 600, color: C.text }}>
+            You invest to get{" "}
+            <span style={{ color: C.green }}>Audience Insights</span>
+            {" "}and access to{" "}
+            <span style={{ color: C.green }}>High-Intent Pre-Qualified Prospects.</span>
+          </div>
+        </div>
+
+        {/* Two pricing cards */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 48 }}>
+          {speakingTiers.map(({ name, sub, badge, badgeColor, badgeText, price, priceLabel, desc, features, cta, highlight }) => (
+            <div key={name} style={{
+              background: C.bg,
+              border: `1.5px solid ${highlight ? C.green : C.border}`,
+              borderRadius: 16,
+              padding: 32,
+              display: "flex",
+              flexDirection: "column",
+              position: "relative",
+            }}>
+              {/* Badge */}
+              <div style={{ marginBottom: 20 }}>
+                <span style={{
+                  background: badgeColor,
+                  color: badgeText,
+                  fontSize: 11,
+                  fontWeight: 700,
+                  padding: "4px 14px",
+                  borderRadius: 999,
+                  letterSpacing: 0.3,
+                }}>{badge}</span>
+              </div>
+
+              {/* Title */}
+              <div style={{ fontSize: 22, fontWeight: 800, color: C.text, marginBottom: 4, letterSpacing: -0.3 }}>{name}</div>
+              <div style={{ fontSize: 13, color: C.textGray, marginBottom: 16 }}>{sub}</div>
+
+              {/* Description */}
+              <p style={{ fontSize: 14, color: C.textMid, lineHeight: 1.65, marginBottom: 24 }}>
+                {desc.split(/\*\*(.*?)\*\*/).map((part, i) =>
+                  i % 2 === 1 ? <strong key={i}>{part}</strong> : part
+                )}
+              </p>
+
+              {/* Features */}
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 8, marginBottom: 28 }}>
+                {features.map((f, i) => (
+                  <div key={i} style={{ display: "flex", gap: 10, fontSize: 13, color: C.textMid, alignItems: "flex-start" }}>
+                    <span style={{ color: C.green, fontWeight: 800, flexShrink: 0 }}>✓</span>
+                    <span style={{ lineHeight: 1.5 }}>{f}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Price + CTA */}
+              <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: 24, display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 16 }}>
+                <div>
+                  <div style={{ fontSize: 11, color: C.textGray, marginBottom: 4 }}>{priceLabel}</div>
+                  <div style={{ fontSize: 36, fontWeight: 900, color: C.green, lineHeight: 1 }}>{price}</div>
+                </div>
+                <a href="mailto:denis@fsummit.net" style={{
+                  background: highlight ? C.green : C.bg,
+                  border: `1.5px solid ${highlight ? C.green : C.borderDark}`,
+                  color: highlight ? "#fff" : C.text,
+                  padding: "12px 28px",
+                  borderRadius: 8,
+                  fontSize: 13,
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}>{cta} →</a>
+              </div>
+            </div>
           ))}
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
-          {tiers.map(({ name, price, tag, features, highlight, cta }) => (
-            <div key={name} style={{ background: highlight ? C.navy : C.bg, border: highlight ? `2px solid ${C.navy}` : `1px solid ${C.border}`, borderRadius: 16, padding: 24, position: "relative", display: "flex", flexDirection: "column" }}>
-              {highlight && (
-                <div style={{ position: "absolute", top: -1, left: "50%", transform: "translateX(-50%)", background: C.green, color: "#fff", fontSize: 10, fontWeight: 700, letterSpacing: 1.5, padding: "4px 16px", borderRadius: "0 0 8px 8px" }}>MOST POPULAR</div>
-              )}
-              <div style={{ marginTop: highlight ? 16 : 0, flex: 1 }}>
-                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: highlight ? "rgba(255,255,255,0.45)" : C.textGray, marginBottom: 6 }}>{tag}</div>
-                <div style={{ fontSize: 14, fontWeight: 700, color: highlight ? "#fff" : C.text, marginBottom: 4 }}>{name}</div>
-                <div style={{ fontSize: 36, fontWeight: 900, color: highlight ? C.green : C.text, marginBottom: 16, lineHeight: 1 }}>{price}</div>
-                <div style={{ height: 1, background: highlight ? "rgba(255,255,255,0.1)" : C.border, marginBottom: 16 }} />
-                <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 24 }}>
-                  {features.map(f => (
-                    <div key={f} style={{ display: "flex", gap: 8, fontSize: 13, color: highlight ? "rgba(255,255,255,0.7)" : C.textMid, alignItems: "flex-start" }}>
-                      <span style={{ color: C.green, fontWeight: 700, flexShrink: 0 }}>✓</span>
-                      <span>{f}</span>
+
+        {/* Partners Engagement — 3-column breakdown */}
+        <div style={{ background: C.bg, border: `1px solid ${C.border}`, borderRadius: 16, padding: "36px 40px", marginBottom: 40 }}>
+          <GreenLabel>Partners Engagement</GreenLabel>
+          <h3 style={{ fontSize: 24, fontWeight: 800, color: C.text, marginBottom: 8, letterSpacing: -0.3 }}>Partners Engagement</h3>
+          <p style={{ fontSize: 14, color: C.textGray, marginBottom: 32, maxWidth: 640, lineHeight: 1.65 }}>
+            Our partners get direct access to real data on audience behavior, investment interests, and mobility trends — the kind of intelligence that drives deals.
+          </p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 0, borderRadius: 12, overflow: "hidden", border: `1px solid ${C.border}` }}>
+            {[
+              {
+                label: "Pre Event Exposure",
+                bg: C.green, color: "#fff",
+                items: [
+                  "Geo-targeted video ads (Impressions & CPM)",
+                  "Press release metrics and reach",
+                  "Registration driven by ads (UTM)",
+                  "CTR to landing page",
+                ],
+              },
+              {
+                label: "Event Brand Awareness",
+                bg: "#FEF9C3", color: "#713F12",
+                items: [
+                  "Keynote or panel talk",
+                  "Partner logo during live-stream",
+                  "Free lead offer (ebook, consult, QR scan)",
+                  "Social mentions using event hashtag",
+                  "Live session viewers",
+                ],
+              },
+              {
+                label: "Post Event Engagement",
+                bg: "#EFF6FF", color: "#1E40AF",
+                items: [
+                  "Full attendee survey",
+                  "Behavior and interest data",
+                  "Dedicated email broadcast and articles",
+                  "Number of qualified leads",
+                  "Open and click CTR data",
+                ],
+              },
+            ].map(({ label, bg, color, items }) => (
+              <div key={label} style={{ padding: "24px 24px", borderRight: label !== "Post Event Engagement" ? `1px solid ${C.border}` : "none" }}>
+                <div style={{
+                  display: "inline-block",
+                  background: bg, color,
+                  fontSize: 12, fontWeight: 800,
+                  padding: "6px 16px", borderRadius: 999,
+                  marginBottom: 20,
+                }}>{label}</div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                  {items.map((item, i) => (
+                    <div key={i} style={{ display: "flex", gap: 10, fontSize: 13, color: C.textMid, alignItems: "flex-start" }}>
+                      <span style={{ color: C.textGray, fontWeight: 700, flexShrink: 0, minWidth: 16 }}>{i + 1}.</span>
+                      <span style={{ lineHeight: 1.5 }}>{item}</span>
                     </div>
                   ))}
                 </div>
               </div>
-              <a href="mailto:denis@fsummit.net" style={{ display: "block", textAlign: "center", background: highlight ? C.green : "transparent", border: `1.5px solid ${highlight ? C.green : C.borderDark}`, color: highlight ? "#fff" : C.text, padding: "11px 0", borderRadius: 8, fontSize: 13, fontWeight: 700, textDecoration: "none" }}>{cta} →</a>
+            ))}
+          </div>
+
+          {/* Timeline bar */}
+          <div style={{ marginTop: 32, textAlign: "center" }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: C.text, marginBottom: 16 }}>
+              Partnership Engagement Timeline 8–12 Weeks (From Pre to Post Event)
             </div>
+            <div style={{ position: "relative", height: 12, borderRadius: 999, overflow: "hidden", marginBottom: 8 }}>
+              <div style={{
+                position: "absolute", inset: 0,
+                background: "linear-gradient(to right, #7DC142, #A3D977, #BEE08A, #C8E6A0, #B8D9CC, #93C5D8, #6BAED6)",
+              }} />
+            </div>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div style={{ textAlign: "left" }}>
+                <div style={{ fontSize: 11, color: C.textGray }}>Week 1</div>
+                <div style={{ fontSize: 12, fontWeight: 700, color: C.green }}>Pre Event</div>
+              </div>
+              <div style={{ textAlign: "center" }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: "#B45309" }}>Event Day</div>
+              </div>
+              <div style={{ textAlign: "right" }}>
+                <div style={{ fontSize: 11, color: C.textGray }}>Week 12</div>
+                <div style={{ fontSize: 12, fontWeight: 700, color: "#1E40AF" }}>Post Event</div>
+              </div>
+            </div>
+            <div style={{ fontSize: 12, color: C.textGray, marginTop: 8 }}>
+              Brand Integration includes full 8–12 week presence — not just the event day
+            </div>
+          </div>
+        </div>
+
+        {/* Exclusivity tags */}
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "center" }}>
+          {["Only 1 EB-5 Regional Center", "Only 1 Immigration Law Firm", "Only 1 Franchise Broker", "Only 1 Wealth Manager"].map(t => (
+            <span key={t} style={{ background: C.greenPale, color: C.greenDark, padding: "5px 14px", borderRadius: 999, fontSize: 12, fontWeight: 600 }}>✓ {t}</span>
           ))}
         </div>
-        <div style={{ textAlign: "center", marginTop: 24, color: C.textGray, fontSize: 13 }}>
-          Early bird pricing until June 15, 2026 · <a href="mailto:denis@fsummit.net" style={{ color: C.green, fontWeight: 600, textDecoration: "none" }}>Contact for custom packages</a>
+        <div style={{ textAlign: "center", marginTop: 20, color: C.textGray, fontSize: 13 }}>
+          Early bird pricing until June 15, 2026 ·{" "}
+          <a href="mailto:denis@fsummit.net" style={{ color: C.green, fontWeight: 600, textDecoration: "none" }}>Contact for custom packages</a>
         </div>
+
       </div>
     </section>
   );
