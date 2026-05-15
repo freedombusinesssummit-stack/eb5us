@@ -13,8 +13,13 @@ const C = {
   greenDark: "#5A9E2A",
   greenPale: "#EEF7E6",
   red: "#E8334A",
+  redDark: "#C41E33",
   border: "#E2E8F0",
   borderDark: "#CBD5E1",
+  // Hero dark palette
+  heroBlack: "#0A0A0A",
+  heroRed: "#B22234",
+  heroRedBright: "#E8334A",
 };
 
 function useCountdown(target: string) {
@@ -56,19 +61,19 @@ const StatCard = ({ icon, value, label }: { icon: string; value: string; label: 
 
 function NavBar() {
   return (
-    <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: "rgba(255,255,255,0.97)", borderBottom: `1px solid ${C.border}`, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 40px", height: 64, backdropFilter: "blur(8px)" }}>
+    <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: "rgba(10,10,10,0.97)", borderBottom: "1px solid rgba(255,255,255,0.08)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 40px", height: 64, backdropFilter: "blur(12px)" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <div style={{ width: 36, height: 36, borderRadius: "50%", background: C.green, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 13, color: "#fff" }}>FS</div>
-        <span style={{ fontWeight: 700, fontSize: 15, color: C.text }}>Freedom Summit</span>
+        <div style={{ width: 36, height: 36, borderRadius: "50%", background: C.heroRed, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 13, color: "#fff" }}>FS</div>
+        <span style={{ fontWeight: 700, fontSize: 15, color: "#fff" }}>Freedom Summit</span>
       </div>
       <div style={{ display: "flex", gap: 36 }}>
         {["About", "Audience", "Agenda", "Pricing"].map(l => (
-          <a key={l} href={`#${l.toLowerCase()}`} style={{ color: C.textGray, fontSize: 14, fontWeight: 500, textDecoration: "none" }}>{l}</a>
+          <a key={l} href={`#${l.toLowerCase()}`} style={{ color: "rgba(255,255,255,0.55)", fontSize: 14, fontWeight: 500, textDecoration: "none" }}>{l}</a>
         ))}
       </div>
       <div style={{ display: "flex", gap: 12 }}>
-        <a href="#pricing" style={{ border: `1.5px solid ${C.border}`, borderRadius: 8, padding: "8px 20px", fontSize: 13, fontWeight: 600, color: C.text, textDecoration: "none", background: C.bg }}>View Packages</a>
-        <a href="mailto:denis@fsummit.net" style={{ background: C.red, color: "#fff", padding: "8px 20px", borderRadius: 8, fontSize: 13, fontWeight: 700, textDecoration: "none" }}>Partner With Us</a>
+        <a href="#pricing" style={{ border: "1.5px solid rgba(255,255,255,0.15)", borderRadius: 8, padding: "8px 20px", fontSize: 13, fontWeight: 600, color: "#fff", textDecoration: "none", background: "transparent" }}>View Packages</a>
+        <a href="mailto:denis@fsummit.net" style={{ background: C.heroRed, color: "#fff", padding: "8px 20px", borderRadius: 8, fontSize: 13, fontWeight: 700, textDecoration: "none" }}>Partner With Us</a>
       </div>
     </nav>
   );
@@ -77,63 +82,103 @@ function NavBar() {
 function Hero() {
   const t = useCountdown("2026-07-27T11:00:00-04:00");
   return (
-    <section style={{ paddingTop: 100, paddingBottom: 64, maxWidth: 960, margin: "0 auto", padding: "100px 40px 64px" }}>
-      <div style={{ display: "flex", gap: 10, marginBottom: 28, flexWrap: "wrap" }}>
-        <Pill dark>July 27–28, 2026</Pill>
-        <Pill dark>💻 Virtual Event</Pill>
-        <Pill dark>🌐 Worldwide Online</Pill>
-      </div>
-
-      <h1 style={{ fontSize: "clamp(38px, 5.5vw, 68px)", fontWeight: 900, lineHeight: 1.05, color: C.text, marginBottom: 16, letterSpacing: -1 }}>
-        Freedom Business Summit 2026<br />Invest America Edition 🇺🇸
-      </h1>
-
-      <p style={{ fontSize: 18, color: C.textMid, marginBottom: 28, maxWidth: 580, lineHeight: 1.6 }}>
-        The Definitive Summit for EB-5 & E-2 Investor Visas — for Entrepreneurs Ready to Enter the U.S. Before the September 2026 Deadline.
-      </p>
-
-      <div style={{ marginBottom: 24 }}>
-        {[
-          "1 focused day — expert sessions from licensed EB-5 attorneys, Regional Center operators, and E-2 franchise specialists",
-          "6 sessions — covering EB-5 due diligence, E-2 pathways, visa comparison, U.S. tax structuring & live investor case studies",
-        ].map((txt, i) => (
-          <div key={i} style={{ display: "flex", gap: 10, marginBottom: 10, alignItems: "flex-start" }}>
-            <span style={{ color: C.green, fontSize: 18, marginTop: 2, flexShrink: 0 }}>•</span>
-            <span style={{ fontSize: 16, fontWeight: 700, color: C.text }}>{txt}</span>
-          </div>
+    <section style={{ background: C.heroBlack, position: "relative", overflow: "hidden", paddingTop: 64 }}>
+      {/* American flag stripes - subtle background */}
+      <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
+        {[...Array(13)].map((_, i) => (
+          <div key={i} style={{
+            position: "absolute", left: 0, right: 0,
+            top: `${(i / 13) * 100}%`,
+            height: `${100 / 13}%`,
+            background: i % 2 === 0 ? "rgba(178,34,52,0.06)" : "transparent",
+          }} />
         ))}
+        {/* Red glow top right */}
+        <div style={{ position: "absolute", top: -100, right: -100, width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(178,34,52,0.18) 0%, transparent 70%)", pointerEvents: "none" }} />
+        {/* Subtle grid */}
+        <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
       </div>
 
-      <div style={{ display: "inline-flex", alignItems: "center", gap: 14, border: `1px solid ${C.border}`, borderRadius: 12, padding: "14px 20px", marginBottom: 28, background: C.bgSoft }}>
-        <div style={{ fontSize: 24 }}>🏛️</div>
-        <div>
-          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 2, color: C.green, textTransform: "uppercase" }}>Program Focus</div>
-          <div style={{ fontSize: 14, fontWeight: 600, color: C.text }}>EB-5 Investor Visa · E-2 Treaty Investor · USCIS 2026</div>
+      <div style={{ maxWidth: 960, margin: "0 auto", padding: "72px 40px 80px", position: "relative" }}>
+        {/* Pills */}
+        <div style={{ display: "flex", gap: 10, marginBottom: 32, flexWrap: "wrap" }}>
+          {["July 27–28, 2026", "💻 Virtual Event", "🌐 Worldwide Online"].map(l => (
+            <span key={l} style={{ display: "inline-flex", alignItems: "center", background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.8)", padding: "6px 16px", borderRadius: 999, fontSize: 13, fontWeight: 500 }}>{l}</span>
+          ))}
         </div>
-      </div>
 
-      <div style={{ marginBottom: 36 }}>
-        <div style={{ display: "inline-flex", alignItems: "center", gap: 10, background: C.navy, borderRadius: 999, padding: "8px 18px 8px 12px", marginBottom: 16 }}>
-          <span style={{ width: 8, height: 8, borderRadius: "50%", background: C.red, display: "inline-block" }} />
-          <span style={{ color: "#fff", fontSize: 13, fontWeight: 600 }}>Get Early Bird Access! Act Fast</span>
+        {/* Main heading */}
+        <div style={{ marginBottom: 8 }}>
+          <div style={{ fontSize: "clamp(14px, 1.5vw, 16px)", fontWeight: 700, letterSpacing: 3, textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: 12 }}>
+            Freedom Business Summit 2026
+          </div>
+          <h1 style={{ fontSize: "clamp(44px, 7vw, 84px)", fontWeight: 900, lineHeight: 0.95, color: "#fff", letterSpacing: -2, marginBottom: 0 }}>
+            Invest America<br />
+            <span style={{ color: C.heroRed }}>Edition</span>
+            <span style={{ fontSize: "0.7em" }}> 🇺🇸</span>
+          </h1>
         </div>
-        <div style={{ display: "flex", alignItems: "flex-end", gap: 2 }}>
-          {[{ val: t.d, label: "days" }, { val: t.h, label: "hrs" }, { val: t.m, label: "min" }, { val: t.s, label: "sec" }].map(({ val, label }, i) => (
-            <div key={label} style={{ display: "flex", alignItems: "flex-end", gap: 2 }}>
-              {i > 0 && <span style={{ fontSize: 56, fontWeight: 900, color: C.red, lineHeight: 1, marginBottom: 20, margin: "0 2px 20px" }}>:</span>}
-              <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 64, fontWeight: 900, color: C.text, lineHeight: 1 }}>{String(val).padStart(2, "0")}</div>
-                <div style={{ fontSize: 12, color: C.textGray, marginTop: 4 }}>{label}</div>
-              </div>
+
+        {/* EB-5 badge - bold red pill */}
+        <div style={{ display: "flex", gap: 10, margin: "24px 0", flexWrap: "wrap" }}>
+          <span style={{ background: C.heroRed, color: "#fff", padding: "6px 20px", borderRadius: 999, fontSize: 13, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase" }}>EB-5 Investor Visa</span>
+          <span style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.7)", padding: "6px 20px", borderRadius: 999, fontSize: 13, fontWeight: 600 }}>E-2 Treaty Investor</span>
+          <span style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.7)", padding: "6px 20px", borderRadius: 999, fontSize: 13, fontWeight: 600 }}>USCIS 2026</span>
+        </div>
+
+        <p style={{ fontSize: 18, color: "rgba(255,255,255,0.6)", marginBottom: 28, maxWidth: 560, lineHeight: 1.65 }}>
+          The Definitive Summit for EB-5 & E-2 Investor Visas — for Entrepreneurs Ready to Enter the U.S. Before the September 2026 Deadline.
+        </p>
+
+        <div style={{ marginBottom: 32 }}>
+          {[
+            "1 focused day — EB-5 attorneys, Regional Center operators, and E-2 franchise specialists",
+            "6 sessions — EB-5 due diligence, E-2 pathways, USCIS policy, U.S. tax structuring & live investor stories",
+          ].map((txt, i) => (
+            <div key={i} style={{ display: "flex", gap: 12, marginBottom: 10, alignItems: "flex-start" }}>
+              <span style={{ color: C.heroRed, fontSize: 18, marginTop: 2, flexShrink: 0, fontWeight: 900 }}>—</span>
+              <span style={{ fontSize: 15, fontWeight: 600, color: "rgba(255,255,255,0.75)" }}>{txt}</span>
             </div>
           ))}
         </div>
+
+        {/* Program focus badge */}
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 14, border: "1px solid rgba(178,34,52,0.4)", borderRadius: 12, padding: "12px 20px", marginBottom: 36, background: "rgba(178,34,52,0.08)" }}>
+          <div style={{ fontSize: 22 }}>🏛️</div>
+          <div>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 2, color: C.heroRed, textTransform: "uppercase" }}>Single Jurisdiction Focus</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: "#fff" }}>US Inbound · EB-5 Investor Program · E-2 Treaty</div>
+          </div>
+        </div>
+
+        {/* Countdown */}
+        <div style={{ marginBottom: 40 }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 999, padding: "7px 18px 7px 12px", marginBottom: 20 }}>
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: C.heroRed, display: "inline-block", boxShadow: `0 0 8px ${C.heroRed}` }} />
+            <span style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, fontWeight: 600 }}>Get Early Bird Access! Act Fast</span>
+          </div>
+          <div style={{ display: "flex", alignItems: "flex-end", gap: 2 }}>
+            {[{ val: t.d, label: "days" }, { val: t.h, label: "hrs" }, { val: t.m, label: "min" }, { val: t.s, label: "sec" }].map(({ val, label }, i) => (
+              <div key={label} style={{ display: "flex", alignItems: "flex-end", gap: 2 }}>
+                {i > 0 && <span style={{ fontSize: 56, fontWeight: 900, color: C.heroRed, lineHeight: 1, margin: "0 4px 20px" }}>:</span>}
+                <div style={{ textAlign: "center" }}>
+                  <div style={{ fontSize: 72, fontWeight: 900, color: "#fff", lineHeight: 1, letterSpacing: -3 }}>{String(val).padStart(2, "0")}</div>
+                  <div style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", marginTop: 6, letterSpacing: 1, textTransform: "uppercase" }}>{label}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTAs */}
+        <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+          <a href="mailto:denis@fsummit.net" style={{ background: C.heroRed, color: "#fff", padding: "15px 36px", borderRadius: 10, fontSize: 15, fontWeight: 700, textDecoration: "none", letterSpacing: 0.3 }}>Partner With Us →</a>
+          <a href="#pricing" style={{ border: "1.5px solid rgba(255,255,255,0.2)", background: "transparent", color: "#fff", padding: "15px 32px", borderRadius: 10, fontSize: 15, fontWeight: 600, textDecoration: "none" }}>View Packages</a>
+        </div>
       </div>
 
-      <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-        <a href="mailto:denis@fsummit.net" style={{ background: C.red, color: "#fff", padding: "14px 32px", borderRadius: 10, fontSize: 15, fontWeight: 700, textDecoration: "none" }}>Partner With Us →</a>
-        <a href="#pricing" style={{ border: `1.5px solid ${C.border}`, background: C.bg, color: C.text, padding: "14px 32px", borderRadius: 10, fontSize: 15, fontWeight: 600, textDecoration: "none" }}>View Packages</a>
-      </div>
+      {/* Bottom fade to white */}
+      <div style={{ height: 80, background: "linear-gradient(to bottom, transparent, #fff)" }} />
     </section>
   );
 }
@@ -655,42 +700,42 @@ function Pricing() {
           </div>
         </div>
 
-        {/* Two pricing cards — proposal.fsummit.net style */}
+        {/* Two pricing cards — black/red/white theme */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 48 }}>
-          {/* Card 1 — Speaking & Visibility */}
-          <div style={{ background: "#EEF7E6", border: `1.5px solid ${C.green}40`, borderRadius: 16, padding: 32, display: "flex", flexDirection: "column", position: "relative", overflow: "hidden" }}>
+          {/* Card 1 — Speaking & Visibility — dark card */}
+          <div style={{ background: "#111", border: "1.5px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: 32, display: "flex", flexDirection: "column", position: "relative", overflow: "hidden" }}>
             {/* Diagonal decorative lines */}
-            <svg style={{ position: "absolute", top: 0, right: 0, opacity: 0.18, pointerEvents: "none" }} width="180" height="180" viewBox="0 0 180 180">
-              {[0,20,40,60,80,100].map(i => <line key={i} x1={180-i} y1="0" x2="180" y2={i} stroke={C.green} strokeWidth="1.5"/>)}
-              {[0,20,40,60,80,100].map(i => <line key={`b${i}`} x1={80-i} y1="0" x2="180" y2={100+i} stroke={C.green} strokeWidth="1.5"/>)}
+            <svg style={{ position: "absolute", top: 0, right: 0, opacity: 0.12, pointerEvents: "none" }} width="180" height="180" viewBox="0 0 180 180">
+              {[0,20,40,60,80,100].map(i => <line key={i} x1={180-i} y1="0" x2="180" y2={i} stroke="#fff" strokeWidth="1.5"/>)}
+              {[0,20,40,60,80,100].map(i => <line key={`b${i}`} x1={80-i} y1="0" x2="180" y2={100+i} stroke="#fff" strokeWidth="1.5"/>)}
             </svg>
 
             <div style={{ marginBottom: 16 }}>
-              <span style={{ background: "#fff", color: C.textGray, fontSize: 11, fontWeight: 700, padding: "4px 14px", borderRadius: 999, border: `1px solid ${C.border}` }}>Limited Slots Per Industry</span>
+              <span style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.6)", fontSize: 11, fontWeight: 700, padding: "4px 14px", borderRadius: 999, border: "1px solid rgba(255,255,255,0.12)" }}>Limited Slots Per Industry</span>
             </div>
-            <div style={{ fontSize: 22, fontWeight: 800, color: C.text, marginBottom: 4, letterSpacing: -0.3 }}>Speaking & Visibility</div>
-            <div style={{ fontSize: 13, color: C.textGray, marginBottom: 16 }}>Per speaking slot</div>
-            <p style={{ fontSize: 14, color: C.textMid, lineHeight: 1.65, marginBottom: 24, flex: 1 }}>
-              <strong>Pay-per-speaking-slot with light branding.</strong> Best for companies wanting to test the audience and collect leads without full sponsorship.
+            <div style={{ fontSize: 22, fontWeight: 800, color: "#fff", marginBottom: 4, letterSpacing: -0.3 }}>Speaking & Visibility</div>
+            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", marginBottom: 16 }}>Per speaking slot</div>
+            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.65)", lineHeight: 1.65, marginBottom: 24, flex: 1 }}>
+              <strong style={{ color: "#fff" }}>Pay-per-speaking-slot with light branding.</strong> Best for companies wanting to test the audience and collect leads without full sponsorship.
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 28 }}>
               {["30-min keynote or panel seat", "Logo on event page + live stream", "Session attendee list (opted-in)", "Survey highlight data", "1 dedicated email broadcast", "Post-event analytics report", "Exclusive category lock"].map(f => (
-                <div key={f} style={{ display: "flex", gap: 10, fontSize: 13, color: C.textMid, alignItems: "flex-start" }}>
-                  <span style={{ color: C.green, fontWeight: 800, flexShrink: 0 }}>✓</span>
+                <div key={f} style={{ display: "flex", gap: 10, fontSize: 13, color: "rgba(255,255,255,0.7)", alignItems: "flex-start" }}>
+                  <span style={{ color: C.heroRed, fontWeight: 800, flexShrink: 0 }}>✓</span>
                   <span style={{ lineHeight: 1.5 }}>{f}</span>
                 </div>
               ))}
             </div>
-            <div style={{ borderTop: `1px solid ${C.green}30`, paddingTop: 24 }}>
-              <div style={{ fontSize: 11, color: C.textGray, marginBottom: 2, letterSpacing: 1, textTransform: "uppercase" }}>Speaking · Early Bird</div>
-              <div style={{ fontSize: 42, fontWeight: 900, color: C.text, lineHeight: 1, marginBottom: 4 }}>$2,150</div>
-              <div style={{ fontSize: 13, color: C.textGray, marginBottom: 20 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$2,950</span></div>
-              <a href="mailto:denis@fsummit.net" style={{ display: "block", textAlign: "center", background: C.bg, border: `1.5px solid ${C.borderDark}`, color: C.text, padding: "13px 0", borderRadius: 8, fontSize: 14, fontWeight: 700, textDecoration: "none" }}>Claim Speaking Slot →</a>
+            <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 24 }}>
+              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", marginBottom: 2, letterSpacing: 1, textTransform: "uppercase" }}>Speaking · Early Bird</div>
+              <div style={{ fontSize: 42, fontWeight: 900, color: "#fff", lineHeight: 1, marginBottom: 4 }}>$2,150</div>
+              <div style={{ fontSize: 13, color: "rgba(255,255,255,0.35)", marginBottom: 20 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$2,950</span></div>
+              <a href="mailto:denis@fsummit.net" style={{ display: "block", textAlign: "center", background: "transparent", border: "1.5px solid rgba(255,255,255,0.2)", color: "#fff", padding: "13px 0", borderRadius: 8, fontSize: 14, fontWeight: 700, textDecoration: "none" }}>Claim Speaking Slot →</a>
             </div>
           </div>
 
-          {/* Card 2 — Brand Integration — bright green */}
-          <div style={{ background: C.green, border: `1.5px solid ${C.green}`, borderRadius: 16, padding: 32, display: "flex", flexDirection: "column", position: "relative", overflow: "hidden" }}>
+          {/* Card 2 — Brand Integration — vivid red */}
+          <div style={{ background: C.heroRed, border: `1.5px solid ${C.heroRed}`, borderRadius: 16, padding: 32, display: "flex", flexDirection: "column", position: "relative", overflow: "hidden" }}>
             {/* Diagonal decorative lines */}
             <svg style={{ position: "absolute", top: 0, right: 0, opacity: 0.15, pointerEvents: "none" }} width="180" height="180" viewBox="0 0 180 180">
               {[0,20,40,60,80,100].map(i => <line key={i} x1={180-i} y1="0" x2="180" y2={i} stroke="#fff" strokeWidth="2"/>)}
@@ -698,11 +743,11 @@ function Pricing() {
             </svg>
 
             <div style={{ marginBottom: 16 }}>
-              <span style={{ background: "rgba(255,255,255,0.25)", color: "#fff", fontSize: 11, fontWeight: 700, padding: "4px 14px", borderRadius: 999 }}>Only ONE Brand Partner Per Event</span>
+              <span style={{ background: "rgba(255,255,255,0.2)", color: "#fff", fontSize: 11, fontWeight: 700, padding: "4px 14px", borderRadius: 999 }}>Only ONE Brand Partner Per Event</span>
             </div>
             <div style={{ fontSize: 22, fontWeight: 800, color: "#fff", marginBottom: 4, letterSpacing: -0.3 }}>Brand Integration Partnership</div>
-            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", marginBottom: 16 }}>8–12 weeks integration</div>
-            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.9)", lineHeight: 1.65, marginBottom: 24, flex: 1 }}>
+            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.65)", marginBottom: 16 }}>8–12 weeks integration</div>
+            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.88)", lineHeight: 1.65, marginBottom: 24, flex: 1 }}>
               8–12 weeks integrated presence with <strong>Co-Created Content, Thought Leadership + Summit Exposure + Lead Generation + PR & Media Coverage.</strong>
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 28 }}>
@@ -713,11 +758,11 @@ function Pricing() {
                 </div>
               ))}
             </div>
-            <div style={{ borderTop: "1px solid rgba(255,255,255,0.25)", paddingTop: 24 }}>
-              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", marginBottom: 2, letterSpacing: 1, textTransform: "uppercase" }}>Strategic · Early Bird</div>
-              <div style={{ fontSize: 42, fontWeight: 900, color: C.text, lineHeight: 1, marginBottom: 4 }}>$5,950</div>
-              <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", marginBottom: 20 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$6,950</span></div>
-              <a href="mailto:denis@fsummit.net" style={{ display: "block", textAlign: "center", background: C.text, border: "none", color: "#fff", padding: "13px 0", borderRadius: 8, fontSize: 14, fontWeight: 700, textDecoration: "none" }}>Claim Brand Integration Slot →</a>
+            <div style={{ borderTop: "1px solid rgba(255,255,255,0.2)", paddingTop: 24 }}>
+              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", marginBottom: 2, letterSpacing: 1, textTransform: "uppercase" }}>Strategic · Early Bird</div>
+              <div style={{ fontSize: 42, fontWeight: 900, color: "#fff", lineHeight: 1, marginBottom: 4 }}>$5,950</div>
+              <div style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", marginBottom: 20 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$6,950</span></div>
+              <a href="mailto:denis@fsummit.net" style={{ display: "block", textAlign: "center", background: "#111", border: "none", color: "#fff", padding: "13px 0", borderRadius: 8, fontSize: 14, fontWeight: 700, textDecoration: "none" }}>Claim Brand Integration Slot →</a>
             </div>
           </div>
         </div>
