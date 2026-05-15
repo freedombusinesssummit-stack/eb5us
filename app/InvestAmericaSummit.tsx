@@ -61,18 +61,18 @@ const StatCard = ({ icon, value, label }: { icon: string; value: string; label: 
 
 function NavBar() {
   return (
-    <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: "rgba(10,10,10,0.97)", borderBottom: "1px solid rgba(255,255,255,0.08)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 40px", height: 64, backdropFilter: "blur(12px)" }}>
+    <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: "rgba(255,255,255,0.97)", borderBottom: `1px solid ${C.border}`, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 40px", height: 64, backdropFilter: "blur(8px)" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
         <div style={{ width: 36, height: 36, borderRadius: "50%", background: C.heroRed, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 13, color: "#fff" }}>FS</div>
-        <span style={{ fontWeight: 700, fontSize: 15, color: "#fff" }}>Freedom Summit</span>
+        <span style={{ fontWeight: 700, fontSize: 15, color: C.text }}>Freedom Summit</span>
       </div>
       <div style={{ display: "flex", gap: 36 }}>
         {["About", "Audience", "Agenda", "Pricing"].map(l => (
-          <a key={l} href={`#${l.toLowerCase()}`} style={{ color: "rgba(255,255,255,0.55)", fontSize: 14, fontWeight: 500, textDecoration: "none" }}>{l}</a>
+          <a key={l} href={`#${l.toLowerCase()}`} style={{ color: C.textGray, fontSize: 14, fontWeight: 500, textDecoration: "none" }}>{l}</a>
         ))}
       </div>
       <div style={{ display: "flex", gap: 12 }}>
-        <a href="#pricing" style={{ border: "1.5px solid rgba(255,255,255,0.15)", borderRadius: 8, padding: "8px 20px", fontSize: 13, fontWeight: 600, color: "#fff", textDecoration: "none", background: "transparent" }}>View Packages</a>
+        <a href="#pricing" style={{ border: `1.5px solid ${C.border}`, borderRadius: 8, padding: "8px 20px", fontSize: 13, fontWeight: 600, color: C.text, textDecoration: "none", background: C.bg }}>View Packages</a>
         <a href="mailto:denis@fsummit.net" style={{ background: C.heroRed, color: "#fff", padding: "8px 20px", borderRadius: 8, fontSize: 13, fontWeight: 700, textDecoration: "none" }}>Partner With Us</a>
       </div>
     </nav>
@@ -700,193 +700,128 @@ function Pricing() {
           </div>
         </div>
 
-        {/* Animated price boxes */}
+        {/* Animated price boxes — light bg, black/red accents */}
         <style>{`
-          @keyframes shimmer {
+          @keyframes shimmerLight {
             0% { transform: translateX(-100%) skewX(-15deg); }
-            100% { transform: translateX(300%) skewX(-15deg); }
-          }
-          @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 20px rgba(178,34,52,0.3), 0 8px 32px rgba(0,0,0,0.3); }
-            50% { box-shadow: 0 0 40px rgba(178,34,52,0.55), 0 12px 48px rgba(0,0,0,0.4); }
+            100% { transform: translateX(350%) skewX(-15deg); }
           }
           @keyframes floatUp {
-            from { opacity: 0; transform: translateY(24px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
           }
-          .price-card { animation: floatUp 0.6s ease forwards; }
-          .price-card-1 { animation-delay: 0.1s; opacity: 0; }
-          .price-card-2 { animation-delay: 0.25s; opacity: 0; }
-          .price-card:hover { transform: translateY(-4px) !important; transition: transform 0.25s ease !important; }
-          .price-btn-dark:hover { background: #222 !important; }
-          .price-btn-white:hover { background: rgba(255,255,255,0.92) !important; }
-          .shimmer-line {
+          .price-card-1 { animation: floatUp 0.5s ease 0.1s forwards; opacity: 0; }
+          .price-card-2 { animation: floatUp 0.5s ease 0.22s forwards; opacity: 0; }
+          .price-card-1:hover, .price-card-2:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.1) !important; }
+          .shimmer-red {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.07) 50%, transparent 100%);
-            width: 60%; animation: shimmer 3.5s infinite; pointer-events: none;
+            background: linear-gradient(90deg, transparent 0%, rgba(178,34,52,0.06) 50%, transparent 100%);
+            width: 50%; animation: shimmerLight 4s infinite 0.5s; pointer-events: none;
           }
-          .shimmer-line-dark {
+          .shimmer-dark {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%);
-            width: 60%; animation: shimmer 4s infinite 1s; pointer-events: none;
+            background: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.03) 50%, transparent 100%);
+            width: 50%; animation: shimmerLight 4.5s infinite 1s; pointer-events: none;
           }
+          .price-btn-red { transition: background 0.2s, transform 0.15s !important; }
+          .price-btn-red:hover { background: #9e1a2a !important; transform: scale(1.01); }
+          .price-btn-outline:hover { background: #f5f5f5 !important; }
         `}</style>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 48 }}>
 
-          {/* ── Card 1: Speaking & Visibility ── black bg, red accent */}
-          <div className="price-card price-card-1" style={{
-            background: "#0D0D0D",
-            border: "1.5px solid rgba(255,255,255,0.08)",
-            borderRadius: 20,
-            overflow: "hidden",
+          {/* Card 1 — Speaking & Visibility — white bg, dark accents */}
+          <div className="price-card-1" style={{
+            background: C.bg,
+            border: `1.5px solid ${C.border}`,
+            borderRadius: 20, overflow: "hidden",
             display: "flex", flexDirection: "column",
             position: "relative",
-            transition: "transform 0.25s ease",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
+            transition: "transform 0.25s ease, box-shadow 0.25s ease",
           }}>
-            {/* Top content area */}
+            <div className="shimmer-dark" />
+
+            {/* Diagonal lines — subtle */}
+            <svg style={{ position: "absolute", top: 0, right: 0, opacity: 0.06, pointerEvents: "none" }} width="200" height="200" viewBox="0 0 200 200">
+              {[0,18,36,54,72,90,108,126].map(i => <line key={i} x1={200-i} y1="0" x2="200" y2={i} stroke="#0D0D0D" strokeWidth="1.5"/>)}
+              {[0,18,36,54,72,90,108].map(i => <line key={`b${i}`} x1={92-i} y1="0" x2="200" y2={108+i} stroke="#0D0D0D" strokeWidth="1.5"/>)}
+            </svg>
+
             <div style={{ padding: "28px 28px 24px", flex: 1 }}>
-              <div className="shimmer-line-dark" />
-
-              {/* Diagonal SVG lines — top right */}
-              <svg style={{ position: "absolute", top: 0, right: 0, opacity: 0.07, pointerEvents: "none" }} width="220" height="220" viewBox="0 0 220 220">
-                {[0,18,36,54,72,90,108,126].map(i => (
-                  <line key={i} x1={220-i} y1="0" x2="220" y2={i} stroke="#fff" strokeWidth="1"/>
-                ))}
-                {[0,18,36,54,72,90,108].map(i => (
-                  <line key={`b${i}`} x1={112-i} y1="0" x2="220" y2={108+i} stroke="#fff" strokeWidth="1"/>
-                ))}
-              </svg>
-
               <div style={{ marginBottom: 18 }}>
-                <span style={{
-                  background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)",
-                  fontSize: 10, fontWeight: 700, padding: "4px 12px", borderRadius: 999,
-                  border: "1px solid rgba(255,255,255,0.1)", letterSpacing: 1, textTransform: "uppercase",
-                }}>Limited Slots Per Industry</span>
+                <span style={{ background: "#F1F5F9", color: C.textGray, fontSize: 10, fontWeight: 700, padding: "4px 12px", borderRadius: 999, letterSpacing: 1, textTransform: "uppercase" }}>Limited Slots Per Industry</span>
               </div>
-
-              <div style={{ fontSize: 21, fontWeight: 800, color: "#fff", marginBottom: 4, letterSpacing: -0.3 }}>Speaking & Visibility</div>
-              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", marginBottom: 20, letterSpacing: 0.5 }}>Per speaking slot</div>
-
-              <p style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: 22 }}>
-                <strong style={{ color: "rgba(255,255,255,0.85)" }}>Pay-per-speaking-slot with light branding.</strong> Best for companies wanting to test the audience and collect leads without full sponsorship.
+              <div style={{ fontSize: 21, fontWeight: 800, color: C.text, marginBottom: 4, letterSpacing: -0.3 }}>Speaking & Visibility</div>
+              <div style={{ fontSize: 12, color: C.textGray, marginBottom: 20, letterSpacing: 0.5 }}>Per speaking slot</div>
+              <p style={{ fontSize: 13, color: C.textMid, lineHeight: 1.7, marginBottom: 22 }}>
+                <strong>Pay-per-speaking-slot with light branding.</strong> Best for companies wanting to test the audience and collect leads without full sponsorship.
               </p>
-
               <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
                 {["30-min keynote or panel seat", "Logo on event page + live stream", "Session attendee list (opted-in)", "Survey highlight data", "1 dedicated email broadcast", "Post-event analytics report", "Exclusive category lock"].map(f => (
-                  <div key={f} style={{ display: "flex", gap: 10, fontSize: 13, color: "rgba(255,255,255,0.65)", alignItems: "center" }}>
-                    <span style={{
-                      width: 16, height: 16, borderRadius: "50%",
-                      background: "rgba(178,34,52,0.2)", border: "1px solid rgba(178,34,52,0.5)",
-                      display: "inline-flex", alignItems: "center", justifyContent: "center",
-                      fontSize: 9, color: C.heroRed, fontWeight: 900, flexShrink: 0,
-                    }}>✓</span>
+                  <div key={f} style={{ display: "flex", gap: 10, fontSize: 13, color: C.textMid, alignItems: "center" }}>
+                    <span style={{ width: 16, height: 16, borderRadius: "50%", background: "#F1F5F9", border: `1.5px solid ${C.borderDark}`, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 8, color: C.text, fontWeight: 900, flexShrink: 0 }}>✓</span>
                     {f}
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Price footer — light background contrast */}
-            <div style={{
-              background: "rgba(255,255,255,0.04)",
-              borderTop: "1px solid rgba(255,255,255,0.07)",
-              padding: "22px 28px",
-            }}>
-              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 4 }}>Speaking · Early Bird</div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 4 }}>
-                <span style={{ fontSize: 44, fontWeight: 900, color: "#fff", letterSpacing: -2, lineHeight: 1 }}>$2,150</span>
-              </div>
-              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginBottom: 18 }}>
-                Standard (June 15th):&nbsp;<span style={{ textDecoration: "line-through" }}>$2,950</span>
-              </div>
-              <a href="mailto:denis@fsummit.net" className="price-btn-dark" style={{
-                display: "block", textAlign: "center",
-                background: "#1a1a1a", border: "1.5px solid rgba(255,255,255,0.15)",
-                color: "#fff", padding: "13px 0", borderRadius: 10,
-                fontSize: 13, fontWeight: 700, textDecoration: "none",
-                transition: "background 0.2s",
-              }}>Claim Speaking Slot →</a>
+            {/* Price footer */}
+            <div style={{ background: "#F8F9FB", borderTop: `1px solid ${C.border}`, padding: "22px 28px" }}>
+              <div style={{ fontSize: 10, color: C.textGray, letterSpacing: 2, textTransform: "uppercase", marginBottom: 4 }}>Speaking · Early Bird</div>
+              <div style={{ fontSize: 44, fontWeight: 900, color: C.text, letterSpacing: -2, lineHeight: 1, marginBottom: 4 }}>$2,150</div>
+              <div style={{ fontSize: 12, color: C.textGray, marginBottom: 18 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$2,950</span></div>
+              <a href="mailto:denis@fsummit.net" className="price-btn-outline" style={{ display: "block", textAlign: "center", background: C.bg, border: `1.5px solid ${C.borderDark}`, color: C.text, padding: "13px 0", borderRadius: 10, fontSize: 13, fontWeight: 700, textDecoration: "none", transition: "background 0.2s" }}>Claim Speaking Slot →</a>
             </div>
           </div>
 
-          {/* ── Card 2: Brand Integration ── vivid red bg, animated glow */}
-          <div className="price-card price-card-2" style={{
-            background: C.heroRed,
-            borderRadius: 20,
-            overflow: "hidden",
+          {/* Card 2 — Brand Integration — light red tint bg, red accent */}
+          <div className="price-card-2" style={{
+            background: "#FFF8F8",
+            border: `1.5px solid ${C.heroRed}30`,
+            borderRadius: 20, overflow: "hidden",
             display: "flex", flexDirection: "column",
             position: "relative",
-            animation: "floatUp 0.6s ease 0.25s forwards, pulseGlow 3s ease-in-out 1s infinite",
-            opacity: 0,
-            transition: "transform 0.25s ease",
+            boxShadow: `0 4px 24px rgba(178,34,52,0.08)`,
+            transition: "transform 0.25s ease, box-shadow 0.25s ease",
           }}>
-            <div className="shimmer-line" />
+            <div className="shimmer-red" />
 
-            {/* Diagonal SVG lines — top right */}
-            <svg style={{ position: "absolute", top: 0, right: 0, opacity: 0.12, pointerEvents: "none" }} width="220" height="220" viewBox="0 0 220 220">
-              {[0,18,36,54,72,90,108,126].map(i => (
-                <line key={i} x1={220-i} y1="0" x2="220" y2={i} stroke="#fff" strokeWidth="1.5"/>
-              ))}
-              {[0,18,36,54,72,90,108].map(i => (
-                <line key={`b${i}`} x1={112-i} y1="0" x2="220" y2={108+i} stroke="#fff" strokeWidth="1.5"/>
-              ))}
+            {/* Red top accent bar */}
+            <div style={{ height: 4, background: `linear-gradient(90deg, ${C.heroRed}, #e8334a)` }} />
+
+            {/* Diagonal lines — red tint */}
+            <svg style={{ position: "absolute", top: 0, right: 0, opacity: 0.08, pointerEvents: "none" }} width="200" height="200" viewBox="0 0 200 200">
+              {[0,18,36,54,72,90,108,126].map(i => <line key={i} x1={200-i} y1="0" x2="200" y2={i} stroke={C.heroRed} strokeWidth="1.5"/>)}
+              {[0,18,36,54,72,90,108].map(i => <line key={`b${i}`} x1={92-i} y1="0" x2="200" y2={108+i} stroke={C.heroRed} strokeWidth="1.5"/>)}
             </svg>
 
-            {/* Top content */}
             <div style={{ padding: "28px 28px 24px", flex: 1 }}>
               <div style={{ marginBottom: 18 }}>
-                <span style={{
-                  background: "rgba(0,0,0,0.2)", color: "#fff",
-                  fontSize: 10, fontWeight: 700, padding: "4px 12px", borderRadius: 999,
-                  letterSpacing: 1, textTransform: "uppercase",
-                }}>Only ONE Brand Partner Per Event</span>
+                <span style={{ background: `${C.heroRed}15`, color: C.heroRed, fontSize: 10, fontWeight: 700, padding: "4px 12px", borderRadius: 999, letterSpacing: 1, textTransform: "uppercase", border: `1px solid ${C.heroRed}30` }}>Only ONE Brand Partner Per Event</span>
               </div>
-
-              <div style={{ fontSize: 21, fontWeight: 800, color: "#fff", marginBottom: 4, letterSpacing: -0.3 }}>Brand Integration Partnership</div>
-              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.6)", marginBottom: 20, letterSpacing: 0.5 }}>8–12 weeks integration</div>
-
-              <p style={{ fontSize: 13, color: "rgba(255,255,255,0.85)", lineHeight: 1.7, marginBottom: 22 }}>
-                8–12 weeks integrated presence with{" "}
-                <strong style={{ color: "#fff" }}>Co-Created Content, Thought Leadership + Summit Exposure + Lead Generation + PR & Media Coverage.</strong>
+              <div style={{ fontSize: 21, fontWeight: 800, color: C.text, marginBottom: 4, letterSpacing: -0.3 }}>Brand Integration Partnership</div>
+              <div style={{ fontSize: 12, color: C.textGray, marginBottom: 20, letterSpacing: 0.5 }}>8–12 weeks integration</div>
+              <p style={{ fontSize: 13, color: C.textMid, lineHeight: 1.7, marginBottom: 22 }}>
+                8–12 weeks integrated presence with <strong>Co-Created Content, Thought Leadership + Summit Exposure + Lead Generation + PR & Media Coverage.</strong>
               </p>
-
               <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
                 {["45-min keynote + panel participation", "Co-branded survey module", "Full attendee + scored leads list", "4–6 dedicated email broadcasts", "Geo-targeted paid ad integration", "Press release distribution", "Thought leadership article series", "Post-event AMA session", "Branded full post-event analytics report", "Exclusive category lock — no competitors"].map(f => (
-                  <div key={f} style={{ display: "flex", gap: 10, fontSize: 13, color: "rgba(255,255,255,0.88)", alignItems: "center" }}>
-                    <span style={{
-                      width: 16, height: 16, borderRadius: "50%",
-                      background: "rgba(255,255,255,0.2)",
-                      display: "inline-flex", alignItems: "center", justifyContent: "center",
-                      fontSize: 9, color: "#fff", fontWeight: 900, flexShrink: 0,
-                    }}>✓</span>
+                  <div key={f} style={{ display: "flex", gap: 10, fontSize: 13, color: C.textMid, alignItems: "center" }}>
+                    <span style={{ width: 16, height: 16, borderRadius: "50%", background: `${C.heroRed}12`, border: `1.5px solid ${C.heroRed}50`, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 8, color: C.heroRed, fontWeight: 900, flexShrink: 0 }}>✓</span>
                     {f}
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Price footer — dark for contrast */}
-            <div style={{
-              background: "rgba(0,0,0,0.25)",
-              borderTop: "1px solid rgba(255,255,255,0.15)",
-              padding: "22px 28px",
-            }}>
-              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.55)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 4 }}>Strategic · Early Bird</div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 4 }}>
-                <span style={{ fontSize: 44, fontWeight: 900, color: "#fff", letterSpacing: -2, lineHeight: 1 }}>$5,950</span>
-              </div>
-              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", marginBottom: 18 }}>
-                Standard (June 15th):&nbsp;<span style={{ textDecoration: "line-through" }}>$6,950</span>
-              </div>
-              <a href="mailto:denis@fsummit.net" className="price-btn-white" style={{
-                display: "block", textAlign: "center",
-                background: "#fff", border: "none",
-                color: "#0D0D0D", padding: "13px 0", borderRadius: 10,
-                fontSize: 13, fontWeight: 800, textDecoration: "none",
-                transition: "background 0.2s",
-              }}>Claim Brand Integration Slot →</a>
+            {/* Price footer */}
+            <div style={{ background: `${C.heroRed}08`, borderTop: `1px solid ${C.heroRed}20`, padding: "22px 28px" }}>
+              <div style={{ fontSize: 10, color: C.heroRed, letterSpacing: 2, textTransform: "uppercase", marginBottom: 4, fontWeight: 700 }}>Strategic · Early Bird</div>
+              <div style={{ fontSize: 44, fontWeight: 900, color: C.text, letterSpacing: -2, lineHeight: 1, marginBottom: 4 }}>$5,950</div>
+              <div style={{ fontSize: 12, color: C.textGray, marginBottom: 18 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$6,950</span></div>
+              <a href="mailto:denis@fsummit.net" className="price-btn-red" style={{ display: "block", textAlign: "center", background: C.heroRed, color: "#fff", padding: "13px 0", borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: "none" }}>Claim Brand Integration Slot →</a>
             </div>
           </div>
 
