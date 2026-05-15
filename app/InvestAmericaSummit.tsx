@@ -82,103 +82,66 @@ function NavBar() {
 function Hero() {
   const t = useCountdown("2026-07-27T11:00:00-04:00");
   return (
-    <section style={{ background: C.heroBlack, position: "relative", overflow: "hidden", paddingTop: 64 }}>
-      {/* American flag stripes - subtle background */}
-      <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
-        {[...Array(13)].map((_, i) => (
-          <div key={i} style={{
-            position: "absolute", left: 0, right: 0,
-            top: `${(i / 13) * 100}%`,
-            height: `${100 / 13}%`,
-            background: i % 2 === 0 ? "rgba(178,34,52,0.06)" : "transparent",
-          }} />
-        ))}
-        {/* Red glow top right */}
-        <div style={{ position: "absolute", top: -100, right: -100, width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(178,34,52,0.18) 0%, transparent 70%)", pointerEvents: "none" }} />
-        {/* Subtle grid */}
-        <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
-      </div>
-
-      <div style={{ maxWidth: 960, margin: "0 auto", padding: "72px 40px 80px", position: "relative" }}>
-        {/* Pills */}
-        <div style={{ display: "flex", gap: 10, marginBottom: 32, flexWrap: "wrap" }}>
-          {["July 27–28, 2026", "💻 Virtual Event", "🌐 Worldwide Online"].map(l => (
-            <span key={l} style={{ display: "inline-flex", alignItems: "center", background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.8)", padding: "6px 16px", borderRadius: 999, fontSize: 13, fontWeight: 500 }}>{l}</span>
-          ))}
+    <section style={{ background: C.bg, paddingTop: 64, borderBottom: `1px solid ${C.border}` }}>
+      <div style={{ maxWidth: 960, margin: "0 auto", padding: "72px 40px 64px" }}>
+        <div style={{ display: "flex", gap: 10, marginBottom: 28, flexWrap: "wrap" }}>
+          <Pill dark>July 27–28, 2026</Pill>
+          <Pill dark>💻 Virtual Event</Pill>
+          <Pill dark>🌐 Worldwide Online</Pill>
         </div>
 
-        {/* Main heading */}
-        <div style={{ marginBottom: 8 }}>
-          <div style={{ fontSize: "clamp(14px, 1.5vw, 16px)", fontWeight: 700, letterSpacing: 3, textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: 12 }}>
-            Freedom Business Summit 2026
-          </div>
-          <h1 style={{ fontSize: "clamp(44px, 7vw, 84px)", fontWeight: 900, lineHeight: 0.95, color: "#fff", letterSpacing: -2, marginBottom: 0 }}>
-            Invest America<br />
-            <span style={{ color: C.heroRed }}>Edition</span>
-            <span style={{ fontSize: "0.7em" }}> 🇺🇸</span>
-          </h1>
-        </div>
+        <h1 style={{ fontSize: "clamp(38px, 5.5vw, 68px)", fontWeight: 900, lineHeight: 1.05, color: C.text, marginBottom: 16, letterSpacing: -1 }}>
+          Freedom Business Summit 2026<br />
+          Invest America Edition 🇺🇸
+        </h1>
 
-        {/* EB-5 badge - bold red pill */}
-        <div style={{ display: "flex", gap: 10, margin: "24px 0", flexWrap: "wrap" }}>
-          <span style={{ background: C.heroRed, color: "#fff", padding: "6px 20px", borderRadius: 999, fontSize: 13, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase" }}>EB-5 Investor Visa</span>
-          <span style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.7)", padding: "6px 20px", borderRadius: 999, fontSize: 13, fontWeight: 600 }}>E-2 Treaty Investor</span>
-          <span style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.7)", padding: "6px 20px", borderRadius: 999, fontSize: 13, fontWeight: 600 }}>USCIS 2026</span>
-        </div>
-
-        <p style={{ fontSize: 18, color: "rgba(255,255,255,0.6)", marginBottom: 28, maxWidth: 560, lineHeight: 1.65 }}>
+        <p style={{ fontSize: 18, color: C.textMid, marginBottom: 28, maxWidth: 580, lineHeight: 1.6 }}>
           The Definitive Summit for EB-5 & E-2 Investor Visas — for Entrepreneurs Ready to Enter the U.S. Before the September 2026 Deadline.
         </p>
 
-        <div style={{ marginBottom: 32 }}>
+        <div style={{ marginBottom: 24 }}>
           {[
-            "1 focused day — EB-5 attorneys, Regional Center operators, and E-2 franchise specialists",
-            "6 sessions — EB-5 due diligence, E-2 pathways, USCIS policy, U.S. tax structuring & live investor stories",
+            "1 focused day — expert sessions from licensed EB-5 attorneys, Regional Center operators, and E-2 franchise specialists",
+            "6 sessions — covering EB-5 due diligence, E-2 pathways, visa comparison, U.S. tax structuring & live investor case studies",
           ].map((txt, i) => (
-            <div key={i} style={{ display: "flex", gap: 12, marginBottom: 10, alignItems: "flex-start" }}>
-              <span style={{ color: C.heroRed, fontSize: 18, marginTop: 2, flexShrink: 0, fontWeight: 900 }}>—</span>
-              <span style={{ fontSize: 15, fontWeight: 600, color: "rgba(255,255,255,0.75)" }}>{txt}</span>
+            <div key={i} style={{ display: "flex", gap: 10, marginBottom: 10, alignItems: "flex-start" }}>
+              <span style={{ color: C.heroRed, fontSize: 18, marginTop: 2, flexShrink: 0 }}>•</span>
+              <span style={{ fontSize: 16, fontWeight: 700, color: C.text }}>{txt}</span>
             </div>
           ))}
         </div>
 
-        {/* Program focus badge */}
-        <div style={{ display: "inline-flex", alignItems: "center", gap: 14, border: "1px solid rgba(178,34,52,0.4)", borderRadius: 12, padding: "12px 20px", marginBottom: 36, background: "rgba(178,34,52,0.08)" }}>
-          <div style={{ fontSize: 22 }}>🏛️</div>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 14, border: `1px solid ${C.border}`, borderRadius: 12, padding: "14px 20px", marginBottom: 28, background: C.bgSoft }}>
+          <div style={{ fontSize: 24 }}>🏛️</div>
           <div>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 2, color: C.heroRed, textTransform: "uppercase" }}>Single Jurisdiction Focus</div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: "#fff" }}>US Inbound · EB-5 Investor Program · E-2 Treaty</div>
+            <div style={{ fontSize: 14, fontWeight: 600, color: C.text }}>US Inbound · EB-5 Investor Visa · E-2 Treaty · USCIS 2026</div>
           </div>
         </div>
 
-        {/* Countdown */}
-        <div style={{ marginBottom: 40 }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 10, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 999, padding: "7px 18px 7px 12px", marginBottom: 20 }}>
-            <span style={{ width: 8, height: 8, borderRadius: "50%", background: C.heroRed, display: "inline-block", boxShadow: `0 0 8px ${C.heroRed}` }} />
-            <span style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, fontWeight: 600 }}>Get Early Bird Access! Act Fast</span>
+        <div style={{ marginBottom: 36 }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 10, background: C.navy, borderRadius: 999, padding: "8px 18px 8px 12px", marginBottom: 16 }}>
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: C.heroRed, display: "inline-block" }} />
+            <span style={{ color: "#fff", fontSize: 13, fontWeight: 600 }}>Get Early Bird Access! Act Fast</span>
           </div>
           <div style={{ display: "flex", alignItems: "flex-end", gap: 2 }}>
             {[{ val: t.d, label: "days" }, { val: t.h, label: "hrs" }, { val: t.m, label: "min" }, { val: t.s, label: "sec" }].map(({ val, label }, i) => (
               <div key={label} style={{ display: "flex", alignItems: "flex-end", gap: 2 }}>
-                {i > 0 && <span style={{ fontSize: 56, fontWeight: 900, color: C.heroRed, lineHeight: 1, margin: "0 4px 20px" }}>:</span>}
+                {i > 0 && <span style={{ fontSize: 56, fontWeight: 900, color: C.heroRed, lineHeight: 1, margin: "0 2px 20px" }}>:</span>}
                 <div style={{ textAlign: "center" }}>
-                  <div style={{ fontSize: 72, fontWeight: 900, color: "#fff", lineHeight: 1, letterSpacing: -3 }}>{String(val).padStart(2, "0")}</div>
-                  <div style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", marginTop: 6, letterSpacing: 1, textTransform: "uppercase" }}>{label}</div>
+                  <div style={{ fontSize: 64, fontWeight: 900, color: C.text, lineHeight: 1 }}>{String(val).padStart(2, "0")}</div>
+                  <div style={{ fontSize: 12, color: C.textGray, marginTop: 4 }}>{label}</div>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* CTAs */}
         <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-          <a href="mailto:denis@fsummit.net" style={{ background: C.heroRed, color: "#fff", padding: "15px 36px", borderRadius: 10, fontSize: 15, fontWeight: 700, textDecoration: "none", letterSpacing: 0.3 }}>Partner With Us →</a>
-          <a href="#pricing" style={{ border: "1.5px solid rgba(255,255,255,0.2)", background: "transparent", color: "#fff", padding: "15px 32px", borderRadius: 10, fontSize: 15, fontWeight: 600, textDecoration: "none" }}>View Packages</a>
+          <a href="mailto:denis@fsummit.net" style={{ background: C.heroRed, color: "#fff", padding: "14px 32px", borderRadius: 10, fontSize: 15, fontWeight: 700, textDecoration: "none" }}>Partner With Us →</a>
+          <a href="#pricing" style={{ border: `1.5px solid ${C.border}`, background: C.bg, color: C.text, padding: "14px 32px", borderRadius: 10, fontSize: 15, fontWeight: 600, textDecoration: "none" }}>View Packages</a>
         </div>
       </div>
-
-      {/* Bottom fade to white */}
-      <div style={{ height: 80, background: "linear-gradient(to bottom, transparent, #fff)" }} />
     </section>
   );
 }
