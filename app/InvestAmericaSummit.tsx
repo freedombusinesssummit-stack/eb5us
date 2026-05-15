@@ -421,20 +421,19 @@ function Speakers() {
 
 function Agenda() {
   const sessions = [
-    { time: "11:00 AM", type: "Keynote", dur: "35 min", title: "EB-5 in 2026: What Changed, What Didn't, and What You Must Know Before Investing", tag: "EB-5 Foundation" },
-    { time: "11:40 AM", type: "Keynote", dur: "35 min", title: "How to Evaluate a Regional Center: 7 Signals That Separate Safe Projects from Disasters", tag: "Due Diligence" },
-    { time: "12:20 PM", type: "Keynote", dur: "35 min", title: "E-2 vs. EB-5: Which Path Fits Your Capital, Country & Timeline", tag: "Program Comparison" },
-    { time: "1:00 PM", type: "Break", dur: "20 min", title: "Networking Break + Partner Showcase", tag: null },
-    { time: "1:20 PM", type: "Keynote", dur: "35 min", title: "The E-2 Playbook: Franchises, Acquisitions & Startups That Qualify", tag: "E-2 Deep Dive" },
-    { time: "2:00 PM", type: "Panel", dur: "60 min", title: "Real Investors, Real Stories — What EB-5 & E-2 Looked Like From the Inside", tag: "Live Panel" },
-    { time: "3:05 PM", type: "Keynote", dur: "35 min", title: "After Approval: U.S. Banking, Tax & Wealth Structuring for New Residents", tag: "Post-Visa Strategy" },
+    { time: "11:00 AM", type: "Keynote", dur: "45 min", title: "EB-5 in 2026: What Changed, What Didn't, and What You Must Know Before Investing", tag: "EB-5 Foundation" },
+    { time: "11:50 AM", type: "Keynote", dur: "45 min", title: "How to Evaluate a Regional Center: 7 Signals That Separate Safe Projects from Disasters", tag: "Due Diligence" },
+    { time: "12:40 PM", type: "Keynote", dur: "45 min", title: "E-2 vs. EB-5: Which Path Fits Your Capital, Country & Timeline", tag: "Program Comparison" },
+    { time: "1:30 PM", type: "Keynote", dur: "45 min", title: "The E-2 Playbook: Franchises, Acquisitions & Startups That Qualify", tag: "E-2 Deep Dive" },
+    { time: "2:20 PM", type: "Panel", dur: "60 min", title: "Real Investors, Real Stories — What EB-5 & E-2 Looked Like From the Inside", tag: "Live Panel" },
+    { time: "3:25 PM", type: "Keynote", dur: "45 min", title: "After Approval: U.S. Banking, Tax & Wealth Structuring for New Residents", tag: "Post-Visa Strategy" },
   ];
   return (
     <section id="agenda" style={{ background: C.bgSection, padding: "72px 40px" }}>
       <div style={{ maxWidth: 960, margin: "0 auto" }}>
         <GreenLabel>Summit Agenda</GreenLabel>
         <h2 style={{ fontSize: 36, fontWeight: 800, color: C.text, marginBottom: 8, letterSpacing: -0.5 }}>July 27, 2026 · 1-Day Format</h2>
-        <p style={{ fontSize: 15, color: C.textGray, marginBottom: 36 }}>11:00 AM – 3:45 PM Eastern Time · Virtual · Worldwide Online</p>
+        <p style={{ fontSize: 15, color: C.textGray, marginBottom: 36 }}>11:00 AM – 4:10 PM Eastern Time · Virtual · Worldwide Online</p>
         <div style={{ border: `1px solid ${C.border}`, borderRadius: 12, overflow: "hidden", background: C.bg }}>
           {sessions.map(({ time, type, dur, title, tag }, i) => (
             <div key={i} style={{ display: "flex", alignItems: "stretch", borderBottom: i < sessions.length - 1 ? `1px solid ${C.border}` : "none" }}>
@@ -621,54 +620,6 @@ function EB5Explainer() {
 }
 
 function Pricing() {
-  const speakingTiers = [
-    {
-      name: "Speaking & Visibility",
-      sub: "Per speaking slot",
-      badge: "Limited Slots Per Industry",
-      badgeColor: "#F1F5F9",
-      badgeText: C.textGray,
-      price: "$2,150",
-      priceLabel: "Early Bird from",
-      desc: "Pay-per-speaking-slot with light branding. Best for companies wanting to test the audience and collect leads without full sponsorship.",
-      features: [
-        "30-min keynote or panel seat",
-        "Logo on event page + live stream",
-        "Session attendee list (opted-in)",
-        "Survey highlight data",
-        "1 dedicated email broadcast",
-        "Post-event analytics report",
-        "Exclusive category lock",
-      ],
-      cta: "Claim Slot",
-      highlight: false,
-    },
-    {
-      name: "Brand Integration Partnership",
-      sub: "8–12 weeks integration",
-      badge: "Only ONE Brand Partner Per Event",
-      badgeColor: C.greenPale,
-      badgeText: C.greenDark,
-      price: "$5,950",
-      priceLabel: "Early Bird from",
-      desc: "8–12 weeks integrated presence with Co-Created Content, Thought Leadership + Summit Exposure + Lead Generation + PR & Media Coverage.",
-      features: [
-        "45-min keynote + panel participation",
-        "Co-branded survey module",
-        "Full attendee + scored leads list",
-        "4–6 dedicated email broadcasts",
-        "Geo-targeted paid ad integration",
-        "Press release distribution",
-        "Thought leadership article series",
-        "Post-event AMA session",
-        "Branded full post-event analytics report",
-        "Exclusive category lock — no competitors",
-      ],
-      cta: "Claim Slot",
-      highlight: true,
-    },
-  ];
-
   return (
     <section id="pricing" style={{ background: C.bgSection, padding: "72px 40px" }}>
       <div style={{ maxWidth: 960, margin: "0 auto" }}>
@@ -704,72 +655,71 @@ function Pricing() {
           </div>
         </div>
 
-        {/* Two pricing cards */}
+        {/* Two pricing cards — proposal.fsummit.net style */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 48 }}>
-          {speakingTiers.map(({ name, sub, badge, badgeColor, badgeText, price, priceLabel, desc, features, cta, highlight }) => (
-            <div key={name} style={{
-              background: C.bg,
-              border: `1.5px solid ${highlight ? C.green : C.border}`,
-              borderRadius: 16,
-              padding: 32,
-              display: "flex",
-              flexDirection: "column",
-              position: "relative",
-            }}>
-              {/* Badge */}
-              <div style={{ marginBottom: 20 }}>
-                <span style={{
-                  background: badgeColor,
-                  color: badgeText,
-                  fontSize: 11,
-                  fontWeight: 700,
-                  padding: "4px 14px",
-                  borderRadius: 999,
-                  letterSpacing: 0.3,
-                }}>{badge}</span>
-              </div>
+          {/* Card 1 — Speaking & Visibility */}
+          <div style={{ background: "#EEF7E6", border: `1.5px solid ${C.green}40`, borderRadius: 16, padding: 32, display: "flex", flexDirection: "column", position: "relative", overflow: "hidden" }}>
+            {/* Diagonal decorative lines */}
+            <svg style={{ position: "absolute", top: 0, right: 0, opacity: 0.18, pointerEvents: "none" }} width="180" height="180" viewBox="0 0 180 180">
+              {[0,20,40,60,80,100].map(i => <line key={i} x1={180-i} y1="0" x2="180" y2={i} stroke={C.green} strokeWidth="1.5"/>)}
+              {[0,20,40,60,80,100].map(i => <line key={`b${i}`} x1={80-i} y1="0" x2="180" y2={100+i} stroke={C.green} strokeWidth="1.5"/>)}
+            </svg>
 
-              {/* Title */}
-              <div style={{ fontSize: 22, fontWeight: 800, color: C.text, marginBottom: 4, letterSpacing: -0.3 }}>{name}</div>
-              <div style={{ fontSize: 13, color: C.textGray, marginBottom: 16 }}>{sub}</div>
-
-              {/* Description */}
-              <p style={{ fontSize: 14, color: C.textMid, lineHeight: 1.65, marginBottom: 24 }}>
-                {desc.split(/\*\*(.*?)\*\*/).map((part, i) =>
-                  i % 2 === 1 ? <strong key={i}>{part}</strong> : part
-                )}
-              </p>
-
-              {/* Features */}
-              <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 8, marginBottom: 28 }}>
-                {features.map((f, i) => (
-                  <div key={i} style={{ display: "flex", gap: 10, fontSize: 13, color: C.textMid, alignItems: "flex-start" }}>
-                    <span style={{ color: C.green, fontWeight: 800, flexShrink: 0 }}>✓</span>
-                    <span style={{ lineHeight: 1.5 }}>{f}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Price + CTA */}
-              <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: 24, display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 16 }}>
-                <div>
-                  <div style={{ fontSize: 11, color: C.textGray, marginBottom: 4 }}>{priceLabel}</div>
-                  <div style={{ fontSize: 36, fontWeight: 900, color: C.green, lineHeight: 1 }}>{price}</div>
-                </div>
-                <a href="mailto:denis@fsummit.net" style={{
-                  background: highlight ? C.green : C.bg,
-                  border: `1.5px solid ${highlight ? C.green : C.borderDark}`,
-                  color: highlight ? "#fff" : C.text,
-                  padding: "12px 28px",
-                  borderRadius: 8,
-                  fontSize: 13,
-                  fontWeight: 700,
-                  textDecoration: "none",
-                  whiteSpace: "nowrap",
-                }}>{cta} →</a>
-              </div>
+            <div style={{ marginBottom: 16 }}>
+              <span style={{ background: "#fff", color: C.textGray, fontSize: 11, fontWeight: 700, padding: "4px 14px", borderRadius: 999, border: `1px solid ${C.border}` }}>Limited Slots Per Industry</span>
             </div>
-          ))}
+            <div style={{ fontSize: 22, fontWeight: 800, color: C.text, marginBottom: 4, letterSpacing: -0.3 }}>Speaking & Visibility</div>
+            <div style={{ fontSize: 13, color: C.textGray, marginBottom: 16 }}>Per speaking slot</div>
+            <p style={{ fontSize: 14, color: C.textMid, lineHeight: 1.65, marginBottom: 24, flex: 1 }}>
+              <strong>Pay-per-speaking-slot with light branding.</strong> Best for companies wanting to test the audience and collect leads without full sponsorship.
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 28 }}>
+              {["30-min keynote or panel seat", "Logo on event page + live stream", "Session attendee list (opted-in)", "Survey highlight data", "1 dedicated email broadcast", "Post-event analytics report", "Exclusive category lock"].map(f => (
+                <div key={f} style={{ display: "flex", gap: 10, fontSize: 13, color: C.textMid, alignItems: "flex-start" }}>
+                  <span style={{ color: C.green, fontWeight: 800, flexShrink: 0 }}>✓</span>
+                  <span style={{ lineHeight: 1.5 }}>{f}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ borderTop: `1px solid ${C.green}30`, paddingTop: 24 }}>
+              <div style={{ fontSize: 11, color: C.textGray, marginBottom: 2, letterSpacing: 1, textTransform: "uppercase" }}>Speaking · Early Bird</div>
+              <div style={{ fontSize: 42, fontWeight: 900, color: C.text, lineHeight: 1, marginBottom: 4 }}>$2,150</div>
+              <div style={{ fontSize: 13, color: C.textGray, marginBottom: 20 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$2,950</span></div>
+              <a href="mailto:denis@fsummit.net" style={{ display: "block", textAlign: "center", background: C.bg, border: `1.5px solid ${C.borderDark}`, color: C.text, padding: "13px 0", borderRadius: 8, fontSize: 14, fontWeight: 700, textDecoration: "none" }}>Claim Speaking Slot →</a>
+            </div>
+          </div>
+
+          {/* Card 2 — Brand Integration — bright green */}
+          <div style={{ background: C.green, border: `1.5px solid ${C.green}`, borderRadius: 16, padding: 32, display: "flex", flexDirection: "column", position: "relative", overflow: "hidden" }}>
+            {/* Diagonal decorative lines */}
+            <svg style={{ position: "absolute", top: 0, right: 0, opacity: 0.15, pointerEvents: "none" }} width="180" height="180" viewBox="0 0 180 180">
+              {[0,20,40,60,80,100].map(i => <line key={i} x1={180-i} y1="0" x2="180" y2={i} stroke="#fff" strokeWidth="2"/>)}
+              {[0,20,40,60,80,100].map(i => <line key={`b${i}`} x1={80-i} y1="0" x2="180" y2={100+i} stroke="#fff" strokeWidth="2"/>)}
+            </svg>
+
+            <div style={{ marginBottom: 16 }}>
+              <span style={{ background: "rgba(255,255,255,0.25)", color: "#fff", fontSize: 11, fontWeight: 700, padding: "4px 14px", borderRadius: 999 }}>Only ONE Brand Partner Per Event</span>
+            </div>
+            <div style={{ fontSize: 22, fontWeight: 800, color: "#fff", marginBottom: 4, letterSpacing: -0.3 }}>Brand Integration Partnership</div>
+            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", marginBottom: 16 }}>8–12 weeks integration</div>
+            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.9)", lineHeight: 1.65, marginBottom: 24, flex: 1 }}>
+              8–12 weeks integrated presence with <strong>Co-Created Content, Thought Leadership + Summit Exposure + Lead Generation + PR & Media Coverage.</strong>
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 28 }}>
+              {["45-min keynote + panel participation", "Co-branded survey module", "Full attendee + scored leads list", "4–6 dedicated email broadcasts", "Geo-targeted paid ad integration", "Press release distribution", "Thought leadership article series", "Post-event AMA session", "Branded full post-event analytics report", "Exclusive category lock — no competitors"].map(f => (
+                <div key={f} style={{ display: "flex", gap: 10, fontSize: 13, color: "rgba(255,255,255,0.9)", alignItems: "flex-start" }}>
+                  <span style={{ color: "#fff", fontWeight: 800, flexShrink: 0 }}>✓</span>
+                  <span style={{ lineHeight: 1.5 }}>{f}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ borderTop: "1px solid rgba(255,255,255,0.25)", paddingTop: 24 }}>
+              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", marginBottom: 2, letterSpacing: 1, textTransform: "uppercase" }}>Strategic · Early Bird</div>
+              <div style={{ fontSize: 42, fontWeight: 900, color: C.text, lineHeight: 1, marginBottom: 4 }}>$5,950</div>
+              <div style={{ fontSize: 13, color: "rgba(255,255,255,0.7)", marginBottom: 20 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$6,950</span></div>
+              <a href="mailto:denis@fsummit.net" style={{ display: "block", textAlign: "center", background: C.text, border: "none", color: "#fff", padding: "13px 0", borderRadius: 8, fontSize: 14, fontWeight: 700, textDecoration: "none" }}>Claim Brand Integration Slot →</a>
+            </div>
+          </div>
         </div>
 
         {/* Partners Engagement — 3-column breakdown */}
