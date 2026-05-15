@@ -700,71 +700,196 @@ function Pricing() {
           </div>
         </div>
 
-        {/* Two pricing cards — black/red/white theme */}
+        {/* Animated price boxes */}
+        <style>{`
+          @keyframes shimmer {
+            0% { transform: translateX(-100%) skewX(-15deg); }
+            100% { transform: translateX(300%) skewX(-15deg); }
+          }
+          @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(178,34,52,0.3), 0 8px 32px rgba(0,0,0,0.3); }
+            50% { box-shadow: 0 0 40px rgba(178,34,52,0.55), 0 12px 48px rgba(0,0,0,0.4); }
+          }
+          @keyframes floatUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          .price-card { animation: floatUp 0.6s ease forwards; }
+          .price-card-1 { animation-delay: 0.1s; opacity: 0; }
+          .price-card-2 { animation-delay: 0.25s; opacity: 0; }
+          .price-card:hover { transform: translateY(-4px) !important; transition: transform 0.25s ease !important; }
+          .price-btn-dark:hover { background: #222 !important; }
+          .price-btn-white:hover { background: rgba(255,255,255,0.92) !important; }
+          .shimmer-line {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.07) 50%, transparent 100%);
+            width: 60%; animation: shimmer 3.5s infinite; pointer-events: none;
+          }
+          .shimmer-line-dark {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%);
+            width: 60%; animation: shimmer 4s infinite 1s; pointer-events: none;
+          }
+        `}</style>
+
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 48 }}>
-          {/* Card 1 — Speaking & Visibility — dark card */}
-          <div style={{ background: "#111", border: "1.5px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: 32, display: "flex", flexDirection: "column", position: "relative", overflow: "hidden" }}>
-            {/* Diagonal decorative lines */}
-            <svg style={{ position: "absolute", top: 0, right: 0, opacity: 0.12, pointerEvents: "none" }} width="180" height="180" viewBox="0 0 180 180">
-              {[0,20,40,60,80,100].map(i => <line key={i} x1={180-i} y1="0" x2="180" y2={i} stroke="#fff" strokeWidth="1.5"/>)}
-              {[0,20,40,60,80,100].map(i => <line key={`b${i}`} x1={80-i} y1="0" x2="180" y2={100+i} stroke="#fff" strokeWidth="1.5"/>)}
-            </svg>
 
-            <div style={{ marginBottom: 16 }}>
-              <span style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.6)", fontSize: 11, fontWeight: 700, padding: "4px 14px", borderRadius: 999, border: "1px solid rgba(255,255,255,0.12)" }}>Limited Slots Per Industry</span>
+          {/* ── Card 1: Speaking & Visibility ── black bg, red accent */}
+          <div className="price-card price-card-1" style={{
+            background: "#0D0D0D",
+            border: "1.5px solid rgba(255,255,255,0.08)",
+            borderRadius: 20,
+            overflow: "hidden",
+            display: "flex", flexDirection: "column",
+            position: "relative",
+            transition: "transform 0.25s ease",
+          }}>
+            {/* Top content area */}
+            <div style={{ padding: "28px 28px 24px", flex: 1 }}>
+              <div className="shimmer-line-dark" />
+
+              {/* Diagonal SVG lines — top right */}
+              <svg style={{ position: "absolute", top: 0, right: 0, opacity: 0.07, pointerEvents: "none" }} width="220" height="220" viewBox="0 0 220 220">
+                {[0,18,36,54,72,90,108,126].map(i => (
+                  <line key={i} x1={220-i} y1="0" x2="220" y2={i} stroke="#fff" strokeWidth="1"/>
+                ))}
+                {[0,18,36,54,72,90,108].map(i => (
+                  <line key={`b${i}`} x1={112-i} y1="0" x2="220" y2={108+i} stroke="#fff" strokeWidth="1"/>
+                ))}
+              </svg>
+
+              <div style={{ marginBottom: 18 }}>
+                <span style={{
+                  background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)",
+                  fontSize: 10, fontWeight: 700, padding: "4px 12px", borderRadius: 999,
+                  border: "1px solid rgba(255,255,255,0.1)", letterSpacing: 1, textTransform: "uppercase",
+                }}>Limited Slots Per Industry</span>
+              </div>
+
+              <div style={{ fontSize: 21, fontWeight: 800, color: "#fff", marginBottom: 4, letterSpacing: -0.3 }}>Speaking & Visibility</div>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", marginBottom: 20, letterSpacing: 0.5 }}>Per speaking slot</div>
+
+              <p style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: 22 }}>
+                <strong style={{ color: "rgba(255,255,255,0.85)" }}>Pay-per-speaking-slot with light branding.</strong> Best for companies wanting to test the audience and collect leads without full sponsorship.
+              </p>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
+                {["30-min keynote or panel seat", "Logo on event page + live stream", "Session attendee list (opted-in)", "Survey highlight data", "1 dedicated email broadcast", "Post-event analytics report", "Exclusive category lock"].map(f => (
+                  <div key={f} style={{ display: "flex", gap: 10, fontSize: 13, color: "rgba(255,255,255,0.65)", alignItems: "center" }}>
+                    <span style={{
+                      width: 16, height: 16, borderRadius: "50%",
+                      background: "rgba(178,34,52,0.2)", border: "1px solid rgba(178,34,52,0.5)",
+                      display: "inline-flex", alignItems: "center", justifyContent: "center",
+                      fontSize: 9, color: C.heroRed, fontWeight: 900, flexShrink: 0,
+                    }}>✓</span>
+                    {f}
+                  </div>
+                ))}
+              </div>
             </div>
-            <div style={{ fontSize: 22, fontWeight: 800, color: "#fff", marginBottom: 4, letterSpacing: -0.3 }}>Speaking & Visibility</div>
-            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", marginBottom: 16 }}>Per speaking slot</div>
-            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.65)", lineHeight: 1.65, marginBottom: 24, flex: 1 }}>
-              <strong style={{ color: "#fff" }}>Pay-per-speaking-slot with light branding.</strong> Best for companies wanting to test the audience and collect leads without full sponsorship.
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 28 }}>
-              {["30-min keynote or panel seat", "Logo on event page + live stream", "Session attendee list (opted-in)", "Survey highlight data", "1 dedicated email broadcast", "Post-event analytics report", "Exclusive category lock"].map(f => (
-                <div key={f} style={{ display: "flex", gap: 10, fontSize: 13, color: "rgba(255,255,255,0.7)", alignItems: "flex-start" }}>
-                  <span style={{ color: C.heroRed, fontWeight: 800, flexShrink: 0 }}>✓</span>
-                  <span style={{ lineHeight: 1.5 }}>{f}</span>
-                </div>
-              ))}
-            </div>
-            <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 24 }}>
-              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", marginBottom: 2, letterSpacing: 1, textTransform: "uppercase" }}>Speaking · Early Bird</div>
-              <div style={{ fontSize: 42, fontWeight: 900, color: "#fff", lineHeight: 1, marginBottom: 4 }}>$2,150</div>
-              <div style={{ fontSize: 13, color: "rgba(255,255,255,0.35)", marginBottom: 20 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$2,950</span></div>
-              <a href="mailto:denis@fsummit.net" style={{ display: "block", textAlign: "center", background: "transparent", border: "1.5px solid rgba(255,255,255,0.2)", color: "#fff", padding: "13px 0", borderRadius: 8, fontSize: 14, fontWeight: 700, textDecoration: "none" }}>Claim Speaking Slot →</a>
+
+            {/* Price footer — light background contrast */}
+            <div style={{
+              background: "rgba(255,255,255,0.04)",
+              borderTop: "1px solid rgba(255,255,255,0.07)",
+              padding: "22px 28px",
+            }}>
+              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 4 }}>Speaking · Early Bird</div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 4 }}>
+                <span style={{ fontSize: 44, fontWeight: 900, color: "#fff", letterSpacing: -2, lineHeight: 1 }}>$2,150</span>
+              </div>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.28)", marginBottom: 18 }}>
+                Standard (June 15th):&nbsp;<span style={{ textDecoration: "line-through" }}>$2,950</span>
+              </div>
+              <a href="mailto:denis@fsummit.net" className="price-btn-dark" style={{
+                display: "block", textAlign: "center",
+                background: "#1a1a1a", border: "1.5px solid rgba(255,255,255,0.15)",
+                color: "#fff", padding: "13px 0", borderRadius: 10,
+                fontSize: 13, fontWeight: 700, textDecoration: "none",
+                transition: "background 0.2s",
+              }}>Claim Speaking Slot →</a>
             </div>
           </div>
 
-          {/* Card 2 — Brand Integration — vivid red */}
-          <div style={{ background: C.heroRed, border: `1.5px solid ${C.heroRed}`, borderRadius: 16, padding: 32, display: "flex", flexDirection: "column", position: "relative", overflow: "hidden" }}>
-            {/* Diagonal decorative lines */}
-            <svg style={{ position: "absolute", top: 0, right: 0, opacity: 0.15, pointerEvents: "none" }} width="180" height="180" viewBox="0 0 180 180">
-              {[0,20,40,60,80,100].map(i => <line key={i} x1={180-i} y1="0" x2="180" y2={i} stroke="#fff" strokeWidth="2"/>)}
-              {[0,20,40,60,80,100].map(i => <line key={`b${i}`} x1={80-i} y1="0" x2="180" y2={100+i} stroke="#fff" strokeWidth="2"/>)}
+          {/* ── Card 2: Brand Integration ── vivid red bg, animated glow */}
+          <div className="price-card price-card-2" style={{
+            background: C.heroRed,
+            borderRadius: 20,
+            overflow: "hidden",
+            display: "flex", flexDirection: "column",
+            position: "relative",
+            animation: "floatUp 0.6s ease 0.25s forwards, pulseGlow 3s ease-in-out 1s infinite",
+            opacity: 0,
+            transition: "transform 0.25s ease",
+          }}>
+            <div className="shimmer-line" />
+
+            {/* Diagonal SVG lines — top right */}
+            <svg style={{ position: "absolute", top: 0, right: 0, opacity: 0.12, pointerEvents: "none" }} width="220" height="220" viewBox="0 0 220 220">
+              {[0,18,36,54,72,90,108,126].map(i => (
+                <line key={i} x1={220-i} y1="0" x2="220" y2={i} stroke="#fff" strokeWidth="1.5"/>
+              ))}
+              {[0,18,36,54,72,90,108].map(i => (
+                <line key={`b${i}`} x1={112-i} y1="0" x2="220" y2={108+i} stroke="#fff" strokeWidth="1.5"/>
+              ))}
             </svg>
 
-            <div style={{ marginBottom: 16 }}>
-              <span style={{ background: "rgba(255,255,255,0.2)", color: "#fff", fontSize: 11, fontWeight: 700, padding: "4px 14px", borderRadius: 999 }}>Only ONE Brand Partner Per Event</span>
+            {/* Top content */}
+            <div style={{ padding: "28px 28px 24px", flex: 1 }}>
+              <div style={{ marginBottom: 18 }}>
+                <span style={{
+                  background: "rgba(0,0,0,0.2)", color: "#fff",
+                  fontSize: 10, fontWeight: 700, padding: "4px 12px", borderRadius: 999,
+                  letterSpacing: 1, textTransform: "uppercase",
+                }}>Only ONE Brand Partner Per Event</span>
+              </div>
+
+              <div style={{ fontSize: 21, fontWeight: 800, color: "#fff", marginBottom: 4, letterSpacing: -0.3 }}>Brand Integration Partnership</div>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.6)", marginBottom: 20, letterSpacing: 0.5 }}>8–12 weeks integration</div>
+
+              <p style={{ fontSize: 13, color: "rgba(255,255,255,0.85)", lineHeight: 1.7, marginBottom: 22 }}>
+                8–12 weeks integrated presence with{" "}
+                <strong style={{ color: "#fff" }}>Co-Created Content, Thought Leadership + Summit Exposure + Lead Generation + PR & Media Coverage.</strong>
+              </p>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
+                {["45-min keynote + panel participation", "Co-branded survey module", "Full attendee + scored leads list", "4–6 dedicated email broadcasts", "Geo-targeted paid ad integration", "Press release distribution", "Thought leadership article series", "Post-event AMA session", "Branded full post-event analytics report", "Exclusive category lock — no competitors"].map(f => (
+                  <div key={f} style={{ display: "flex", gap: 10, fontSize: 13, color: "rgba(255,255,255,0.88)", alignItems: "center" }}>
+                    <span style={{
+                      width: 16, height: 16, borderRadius: "50%",
+                      background: "rgba(255,255,255,0.2)",
+                      display: "inline-flex", alignItems: "center", justifyContent: "center",
+                      fontSize: 9, color: "#fff", fontWeight: 900, flexShrink: 0,
+                    }}>✓</span>
+                    {f}
+                  </div>
+                ))}
+              </div>
             </div>
-            <div style={{ fontSize: 22, fontWeight: 800, color: "#fff", marginBottom: 4, letterSpacing: -0.3 }}>Brand Integration Partnership</div>
-            <div style={{ fontSize: 13, color: "rgba(255,255,255,0.65)", marginBottom: 16 }}>8–12 weeks integration</div>
-            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.88)", lineHeight: 1.65, marginBottom: 24, flex: 1 }}>
-              8–12 weeks integrated presence with <strong>Co-Created Content, Thought Leadership + Summit Exposure + Lead Generation + PR & Media Coverage.</strong>
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 28 }}>
-              {["45-min keynote + panel participation", "Co-branded survey module", "Full attendee + scored leads list", "4–6 dedicated email broadcasts", "Geo-targeted paid ad integration", "Press release distribution", "Thought leadership article series", "Post-event AMA session", "Branded full post-event analytics report", "Exclusive category lock — no competitors"].map(f => (
-                <div key={f} style={{ display: "flex", gap: 10, fontSize: 13, color: "rgba(255,255,255,0.9)", alignItems: "flex-start" }}>
-                  <span style={{ color: "#fff", fontWeight: 800, flexShrink: 0 }}>✓</span>
-                  <span style={{ lineHeight: 1.5 }}>{f}</span>
-                </div>
-              ))}
-            </div>
-            <div style={{ borderTop: "1px solid rgba(255,255,255,0.2)", paddingTop: 24 }}>
-              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.6)", marginBottom: 2, letterSpacing: 1, textTransform: "uppercase" }}>Strategic · Early Bird</div>
-              <div style={{ fontSize: 42, fontWeight: 900, color: "#fff", lineHeight: 1, marginBottom: 4 }}>$5,950</div>
-              <div style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", marginBottom: 20 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$6,950</span></div>
-              <a href="mailto:denis@fsummit.net" style={{ display: "block", textAlign: "center", background: "#111", border: "none", color: "#fff", padding: "13px 0", borderRadius: 8, fontSize: 14, fontWeight: 700, textDecoration: "none" }}>Claim Brand Integration Slot →</a>
+
+            {/* Price footer — dark for contrast */}
+            <div style={{
+              background: "rgba(0,0,0,0.25)",
+              borderTop: "1px solid rgba(255,255,255,0.15)",
+              padding: "22px 28px",
+            }}>
+              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.55)", letterSpacing: 2, textTransform: "uppercase", marginBottom: 4 }}>Strategic · Early Bird</div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 4 }}>
+                <span style={{ fontSize: 44, fontWeight: 900, color: "#fff", letterSpacing: -2, lineHeight: 1 }}>$5,950</span>
+              </div>
+              <div style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", marginBottom: 18 }}>
+                Standard (June 15th):&nbsp;<span style={{ textDecoration: "line-through" }}>$6,950</span>
+              </div>
+              <a href="mailto:denis@fsummit.net" className="price-btn-white" style={{
+                display: "block", textAlign: "center",
+                background: "#fff", border: "none",
+                color: "#0D0D0D", padding: "13px 0", borderRadius: 10,
+                fontSize: 13, fontWeight: 800, textDecoration: "none",
+                transition: "background 0.2s",
+              }}>Claim Brand Integration Slot →</a>
             </div>
           </div>
+
         </div>
 
         {/* Partners Engagement — 3-column breakdown */}
