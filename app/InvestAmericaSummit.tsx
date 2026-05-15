@@ -739,14 +739,14 @@ function Pricing() {
             </div>
           </div>
 
-          {/* Card 2 — Brand Integration — light red tint bg, red accent */}
+          {/* Card 2 — Brand Integration — white bg, red accents */}
           <div className="price-card-2" style={{
-            background: "#FFF8F8",
-            border: `1.5px solid ${C.heroRed}30`,
+            background: C.bg,
+            border: `1.5px solid ${C.heroRed}`,
             borderRadius: 20, overflow: "hidden",
             display: "flex", flexDirection: "column",
             position: "relative",
-            boxShadow: `0 4px 24px rgba(178,34,52,0.08)`,
+            boxShadow: `0 4px 24px rgba(178,34,52,0.1)`,
             transition: "transform 0.25s ease, box-shadow 0.25s ease",
           }}>
             <div className="shimmer-red" />
@@ -755,14 +755,14 @@ function Pricing() {
             <div style={{ height: 4, background: `linear-gradient(90deg, ${C.heroRed}, #e8334a)` }} />
 
             {/* Diagonal lines — red tint */}
-            <svg style={{ position: "absolute", top: 0, right: 0, opacity: 0.08, pointerEvents: "none" }} width="200" height="200" viewBox="0 0 200 200">
+            <svg style={{ position: "absolute", top: 0, right: 0, opacity: 0.05, pointerEvents: "none" }} width="200" height="200" viewBox="0 0 200 200">
               {[0,18,36,54,72,90,108,126].map(i => <line key={i} x1={200-i} y1="0" x2="200" y2={i} stroke={C.heroRed} strokeWidth="1.5"/>)}
               {[0,18,36,54,72,90,108].map(i => <line key={`b${i}`} x1={92-i} y1="0" x2="200" y2={108+i} stroke={C.heroRed} strokeWidth="1.5"/>)}
             </svg>
 
             <div style={{ padding: "28px 28px 24px", flex: 1 }}>
               <div style={{ marginBottom: 18 }}>
-                <span style={{ background: `${C.heroRed}15`, color: C.heroRed, fontSize: 10, fontWeight: 700, padding: "4px 12px", borderRadius: 999, letterSpacing: 1, textTransform: "uppercase", border: `1px solid ${C.heroRed}30` }}>Only ONE Brand Partner Per Event</span>
+                <span style={{ background: `${C.heroRed}12`, color: C.heroRed, fontSize: 10, fontWeight: 700, padding: "4px 12px", borderRadius: 999, letterSpacing: 1, textTransform: "uppercase", border: `1px solid ${C.heroRed}30` }}>Only ONE Brand Partner Per Event</span>
               </div>
               <div style={{ fontSize: 21, fontWeight: 800, color: C.text, marginBottom: 4, letterSpacing: -0.3 }}>Brand Integration Partnership</div>
               <div style={{ fontSize: 12, color: C.textGray, marginBottom: 20, letterSpacing: 0.5 }}>8–12 weeks integration</div>
@@ -780,7 +780,7 @@ function Pricing() {
             </div>
 
             {/* Price footer */}
-            <div style={{ background: `${C.heroRed}08`, borderTop: `1px solid ${C.heroRed}20`, padding: "22px 28px" }}>
+            <div style={{ background: "#F8F9FB", borderTop: `1px solid ${C.heroRed}20`, padding: "22px 28px" }}>
               <div style={{ fontSize: 10, color: C.heroRed, letterSpacing: 2, textTransform: "uppercase", marginBottom: 4, fontWeight: 700 }}>Strategic · Early Bird</div>
               <div style={{ fontSize: 44, fontWeight: 900, color: C.text, letterSpacing: -2, lineHeight: 1, marginBottom: 4 }}>$5,950</div>
               <div style={{ fontSize: 12, color: C.textGray, marginBottom: 18 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$6,950</span></div>
