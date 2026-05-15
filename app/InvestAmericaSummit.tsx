@@ -75,11 +75,11 @@ function NavBar() {
 }
 
 function Hero() {
-  const t = useCountdown("2026-08-20T11:00:00-04:00");
+  const t = useCountdown("2026-07-27T11:00:00-04:00");
   return (
     <section style={{ paddingTop: 100, paddingBottom: 64, maxWidth: 960, margin: "0 auto", padding: "100px 40px 64px" }}>
       <div style={{ display: "flex", gap: 10, marginBottom: 28, flexWrap: "wrap" }}>
-        <Pill dark>August 20–21, 2026</Pill>
+        <Pill dark>July 27–28, 2026</Pill>
         <Pill dark>💻 Virtual Event</Pill>
         <Pill dark>🌐 Worldwide Online</Pill>
       </div>
@@ -365,7 +365,7 @@ function Agenda() {
     <section id="agenda" style={{ background: C.bgSection, padding: "72px 40px" }}>
       <div style={{ maxWidth: 960, margin: "0 auto" }}>
         <GreenLabel>Summit Agenda</GreenLabel>
-        <h2 style={{ fontSize: 36, fontWeight: 800, color: C.text, marginBottom: 8, letterSpacing: -0.5 }}>August 20, 2026 · 1-Day Format</h2>
+        <h2 style={{ fontSize: 36, fontWeight: 800, color: C.text, marginBottom: 8, letterSpacing: -0.5 }}>July 27, 2026 · 1-Day Format</h2>
         <p style={{ fontSize: 15, color: C.textGray, marginBottom: 36 }}>11:00 AM – 3:45 PM Eastern Time · Virtual · Worldwide Online</p>
         <div style={{ border: `1px solid ${C.border}`, borderRadius: 12, overflow: "hidden", background: C.bg }}>
           {sessions.map(({ time, type, dur, title, tag }, i) => (
