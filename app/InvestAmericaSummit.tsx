@@ -693,7 +693,7 @@ function Pricing() {
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 48 }}>
 
-          {/* Card 1 — Speaking & Visibility — white bg, dark accents */}
+          {/* Card 1 — Speaking & Visibility — comparison table format */}
           <div className="price-card-1" style={{
             background: C.bg,
             border: `1.5px solid ${C.border}`,
@@ -705,35 +705,74 @@ function Pricing() {
           }}>
             <div className="shimmer-dark" />
 
-            {/* Diagonal lines — subtle */}
-            <svg style={{ position: "absolute", top: 0, right: 0, opacity: 0.06, pointerEvents: "none" }} width="200" height="200" viewBox="0 0 200 200">
-              {[0,18,36,54,72,90,108,126].map(i => <line key={i} x1={200-i} y1="0" x2="200" y2={i} stroke="#0D0D0D" strokeWidth="1.5"/>)}
-              {[0,18,36,54,72,90,108].map(i => <line key={`b${i}`} x1={92-i} y1="0" x2="200" y2={108+i} stroke="#0D0D0D" strokeWidth="1.5"/>)}
-            </svg>
+            {/* Header */}
+            <div style={{ padding: "24px 28px 0" }}>
+              <div style={{ marginBottom: 8 }}>
+                <span style={{ background: "#F1F5F9", color: C.textGray, fontSize: 10, fontWeight: 700, padding: "4px 12px", borderRadius: 999, letterSpacing: 1, textTransform: "uppercase" }}>Pricing · Speaking</span>
+              </div>
+              <div style={{ fontSize: 24, fontWeight: 800, color: C.text, marginBottom: 4, letterSpacing: -0.3 }}>Speaking & Visibility</div>
+              <div style={{ fontSize: 13, color: C.textGray, marginBottom: 20 }}>Secure your speaking slot without a full partnership commitment. Limited slots per industry.</div>
+            </div>
 
-            <div style={{ padding: "28px 28px 24px", flex: 1 }}>
-              <div style={{ marginBottom: 18 }}>
-                <span style={{ background: "#F1F5F9", color: C.textGray, fontSize: 10, fontWeight: 700, padding: "4px 12px", borderRadius: 999, letterSpacing: 1, textTransform: "uppercase" }}>Limited Slots Per Industry</span>
-              </div>
-              <div style={{ fontSize: 21, fontWeight: 800, color: C.text, marginBottom: 4, letterSpacing: -0.3 }}>Speaking & Visibility</div>
-              <div style={{ fontSize: 12, color: C.textGray, marginBottom: 20, letterSpacing: 0.5 }}>Per speaking slot</div>
-              <p style={{ fontSize: 13, color: C.textMid, lineHeight: 1.7, marginBottom: 22 }}>
-                <strong>Pay-per-speaking-slot with light branding.</strong> Best for companies wanting to test the audience and collect leads without full sponsorship.
-              </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
-                {["30-min keynote or panel seat", "Logo on event page + live stream", "Session attendee list (opted-in)", "Survey highlight data", "1 dedicated email broadcast", "Post-event analytics report", "Exclusive category lock"].map(f => (
-                  <div key={f} style={{ display: "flex", gap: 10, fontSize: 13, color: C.textMid, alignItems: "center" }}>
-                    <span style={{ width: 16, height: 16, borderRadius: "50%", background: "#F1F5F9", border: `1.5px solid ${C.borderDark}`, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 8, color: C.text, fontWeight: 900, flexShrink: 0 }}>✓</span>
-                    {f}
-                  </div>
-                ))}
-              </div>
+            {/* Comparison table */}
+            <div style={{ flex: 1, overflowX: "auto" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+                <thead>
+                  <tr style={{ borderBottom: `1px solid ${C.border}` }}>
+                    <th style={{ padding: "12px 20px", textAlign: "left", color: C.textGray, fontWeight: 600, fontSize: 11, letterSpacing: 1, textTransform: "uppercase", width: "60%", background: C.bgSoft }}>Feature</th>
+                    <th style={{ padding: "12px 16px", textAlign: "center", background: "#F0F9E8", borderLeft: `1px solid ${C.border}` }}>
+                      <div style={{ fontSize: 11, fontWeight: 700, color: C.greenDark, letterSpacing: 1, textTransform: "uppercase", marginBottom: 6 }}>Premium</div>
+                      <span style={{ background: C.green, color: "#fff", fontSize: 10, fontWeight: 700, padding: "3px 10px", borderRadius: 999 }}>✦ Best Choice</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { group: "Branding Visibility", rows: [
+                      { label: "Website Logo Placement + Speaker Section", val: true },
+                      { label: "Exclusive Speaker Per Industry & Category", val: true },
+                      { label: "Sponsored Video Ads", val: true },
+                      { label: "Speaker photo, bio, and topic on event website", val: true },
+                    ]},
+                    { group: "Thought Leadership", rows: [
+                      { label: "Keynote / Panel", val: "45 min Keynote" },
+                    ]},
+                    { group: "Audience Insights", rows: [
+                      { label: "Online Session Attendee List", val: true },
+                      { label: "Registered Attendee via UTM Ads Tag", val: true },
+                      { label: "Survey Data Opt-in Attendee List (250+)", val: true },
+                    ]},
+                    { group: "Post Event", rows: [
+                      { label: "Branded Post Event Analytics Report", val: true },
+                      { label: "EB-5 Investor Playbook (PDF)", val: true },
+                      { label: "Dedicated Newsletter Feature (10K+)", val: true },
+                    ]},
+                  ].map(({ group, rows }) => (
+                    <>
+                      <tr key={group} style={{ background: C.bgSoft }}>
+                        <td colSpan={2} style={{ padding: "8px 20px", fontSize: 10, fontWeight: 700, color: C.textGray, letterSpacing: 1.5, textTransform: "uppercase", borderTop: `1px solid ${C.border}` }}>{group}</td>
+                      </tr>
+                      {rows.map(({ label, val }) => (
+                        <tr key={label} style={{ borderBottom: `1px solid ${C.border}` }}>
+                          <td style={{ padding: "12px 20px", color: C.textMid }}>{label}</td>
+                          <td style={{ padding: "12px 16px", textAlign: "center", background: "#F0F9E8", borderLeft: `1px solid ${C.border}` }}>
+                            {val === true
+                              ? <span style={{ color: C.green, fontSize: 16, fontWeight: 700 }}>✓</span>
+                              : <span style={{ fontSize: 12, fontWeight: 700, color: C.greenDark }}>{val}</span>
+                            }
+                          </td>
+                        </tr>
+                      ))}
+                    </>
+                  ))}
+                </tbody>
+              </table>
             </div>
 
             {/* Price footer */}
             <div style={{ background: "#F8F9FB", borderTop: `1px solid ${C.border}`, padding: "22px 28px" }}>
               <div style={{ fontSize: 10, color: C.textGray, letterSpacing: 2, textTransform: "uppercase", marginBottom: 4 }}>Speaking · Early Bird</div>
-              <div style={{ fontSize: 44, fontWeight: 900, color: C.text, letterSpacing: -2, lineHeight: 1, marginBottom: 4 }}>$2,150</div>
+              <div style={{ fontSize: 44, fontWeight: 900, color: C.text, letterSpacing: -2, lineHeight: 1, marginBottom: 4 }}>$1,950</div>
               <div style={{ fontSize: 12, color: C.textGray, marginBottom: 18 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$2,950</span></div>
               <a href="mailto:denis@fsummit.net" className="price-btn-outline" style={{ display: "block", textAlign: "center", background: C.bg, border: `1.5px solid ${C.borderDark}`, color: C.text, padding: "13px 0", borderRadius: 10, fontSize: 13, fontWeight: 700, textDecoration: "none", transition: "background 0.2s" }}>Claim Speaking Slot →</a>
             </div>
