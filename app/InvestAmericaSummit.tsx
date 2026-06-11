@@ -101,8 +101,8 @@ function Hero() {
 
         <div style={{ marginBottom: 24 }}>
           {[
-            "1 focused day — expert sessions from licensed EB-5 attorneys, Regional Center operators, and E-2 franchise specialists",
-            "6 sessions — covering EB-5 due diligence, E-2 pathways, visa comparison, U.S. tax structuring & live investor case studies",
+            "2 focused days — expert sessions from licensed EB-5 attorneys, Regional Center operators, and E-2 franchise specialists",
+            "10 sessions — covering EB-5 due diligence, E-2 pathways, visa comparison, U.S. tax structuring & live investor case studies",
           ].map((txt, i) => (
             <div key={i} style={{ display: "flex", gap: 10, marginBottom: 10, alignItems: "flex-start" }}>
               <span style={{ color: C.heroRed, fontSize: 18, marginTop: 2, flexShrink: 0 }}>•</span>
@@ -428,32 +428,78 @@ function Speakers() {
 }
 
 function Agenda() {
-  const sessions = [
-    { time: "11:00 AM", type: "Keynote", dur: "45 min", title: "EB-5 in 2026: What Changed, What Didn't, and What You Must Know Before Investing", tag: "EB-5 Foundation" },
-    { time: "11:50 AM", type: "Keynote", dur: "45 min", title: "How to Evaluate a Regional Center: 7 Signals That Separate Safe Projects from Disasters", tag: "Due Diligence" },
-    { time: "12:40 PM", type: "Keynote", dur: "45 min", title: "E-2 vs. EB-5: Which Path Fits Your Capital, Country & Timeline", tag: "Program Comparison" },
-    { time: "1:30 PM", type: "Keynote", dur: "45 min", title: "The E-2 Playbook: Franchises, Acquisitions & Startups That Qualify", tag: "E-2 Deep Dive" },
-    { time: "2:20 PM", type: "Panel", dur: "60 min", title: "Real Investors, Real Stories — What EB-5 & E-2 Looked Like From the Inside", tag: "Live Panel" },
-    { time: "3:25 PM", type: "Keynote", dur: "45 min", title: "After Approval: U.S. Banking, Tax & Wealth Structuring for New Residents", tag: "Post-Visa Strategy" },
-  ];
+  const [activeDay, setActiveDay] = useState(1);
+
+  const days: Record<number, { date: string; time: string; sessions: { time: string; type: string; dur: string; title: string; tag: string | null }[] }> = {
+    1: {
+      date: "July 27, 2026",
+      time: "11:00 AM – 3:25 PM Eastern Time",
+      sessions: [
+        { time: "11:00 AM", type: "Keynote", dur: "45 min", title: "EB-5 in 2026: What Changed, What Didn't, and What You Must Know Before Investing", tag: "EB-5 Foundation" },
+        { time: "11:50 AM", type: "Keynote", dur: "45 min", title: "How to Evaluate a Regional Center: 7 Signals That Separate Safe Projects from Disasters", tag: "Due Diligence" },
+        { time: "12:40 PM", type: "Keynote", dur: "45 min", title: "E-2 vs. EB-5: Which Path Fits Your Capital, Country & Timeline", tag: "Program Comparison" },
+        { time: "1:30 PM", type: "Panel", dur: "60 min", title: "Real Investors, Real Stories — What EB-5 & E-2 Looked Like From the Inside", tag: "Live Panel" },
+        { time: "2:35 PM", type: "Keynote", dur: "45 min", title: "USCIS Policy Update 2026: Priority Dates, Reform Act Impact & What's Coming Next", tag: "Policy Update" },
+      ],
+    },
+    2: {
+      date: "July 28, 2026",
+      time: "11:00 AM – 3:25 PM Eastern Time",
+      sessions: [
+        { time: "11:00 AM", type: "Keynote", dur: "45 min", title: "The E-2 Playbook: Franchises, Acquisitions & Startups That Qualify", tag: "E-2 Deep Dive" },
+        { time: "11:50 AM", type: "Keynote", dur: "45 min", title: "Source of Funds & Escrow: How to Document and Protect Your EB-5 Capital", tag: "Capital Strategy" },
+        { time: "12:40 PM", type: "Keynote", dur: "45 min", title: "After Approval: U.S. Banking, Tax & Wealth Structuring for New Residents", tag: "Post-Visa Strategy" },
+        { time: "1:30 PM", type: "Panel", dur: "60 min", title: "Ask the Experts: Live Q&A with EB-5 Attorneys, Regional Centers & E-2 Advisors", tag: "Live Q&A Panel" },
+        { time: "2:35 PM", type: "Keynote", dur: "45 min", title: "Building Your U.S. Business: Entity Structure, Banking & First 90 Days", tag: "Business Setup" },
+      ],
+    },
+  };
+
+  const current = days[activeDay];
+
   return (
     <section id="agenda" style={{ background: C.bgSection, padding: "72px 40px" }}>
       <div style={{ maxWidth: 960, margin: "0 auto" }}>
         <GreenLabel>Summit Agenda</GreenLabel>
-        <h2 style={{ fontSize: 36, fontWeight: 800, color: C.text, marginBottom: 8, letterSpacing: -0.5 }}>July 27, 2026 · 1-Day Format</h2>
-        <p style={{ fontSize: 15, color: C.textGray, marginBottom: 36 }}>11:00 AM – 4:10 PM Eastern Time · Virtual · Worldwide Online</p>
+        <h2 style={{ fontSize: 36, fontWeight: 800, color: C.text, marginBottom: 8, letterSpacing: -0.5 }}>
+          July 27–28, 2026 · 2-Day Format
+        </h2>
+        <p style={{ fontSize: 15, color: C.textGray, marginBottom: 28 }}>
+          Virtual · Worldwide Online · 5 sessions per day
+        </p>
+
+        {/* Day tabs */}
+        <div style={{ display: "flex", gap: 8, marginBottom: 24 }}>
+          {[1, 2].map(d => (
+            <button key={d} onClick={() => setActiveDay(d)} style={{
+              padding: "10px 28px", borderRadius: 8, fontSize: 14, fontWeight: 700,
+              cursor: "pointer", border: `1.5px solid ${activeDay === d ? C.green : C.border}`,
+              background: activeDay === d ? C.green : C.bg,
+              color: activeDay === d ? "#fff" : C.textGray,
+              transition: "all 0.15s",
+            }}>
+              Day {d} — {d === 1 ? "July 27" : "July 28"}
+            </button>
+          ))}
+        </div>
+
+        {/* Time label */}
+        <p style={{ fontSize: 13, color: C.textGray, marginBottom: 20 }}>
+          {current.date} · {current.time}
+        </p>
+
         <div style={{ border: `1px solid ${C.border}`, borderRadius: 12, overflow: "hidden", background: C.bg }}>
-          {sessions.map(({ time, type, dur, title, tag }, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "stretch", borderBottom: i < sessions.length - 1 ? `1px solid ${C.border}` : "none" }}>
+          {current.sessions.map(({ time, type, dur, title, tag }, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "stretch", borderBottom: i < current.sessions.length - 1 ? `1px solid ${C.border}` : "none" }}>
               <div style={{ minWidth: 108, padding: "20px 16px", borderRight: `1px solid ${C.border}`, display: "flex", flexDirection: "column", justifyContent: "center" }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: C.text }}>{time}</div>
                 <div style={{ fontSize: 11, color: C.textGray, marginTop: 2 }}>{dur}</div>
               </div>
-              <div style={{ width: 4, background: type === "Panel" ? C.red : type === "Break" ? C.border : C.green, flexShrink: 0 }} />
+              <div style={{ width: 4, background: type === "Panel" ? C.heroRed : C.green, flexShrink: 0 }} />
               <div style={{ flex: 1, padding: "20px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: type === "Panel" ? C.red : type === "Break" ? C.textGray : C.green, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 4 }}>{type}</div>
-                  <div style={{ fontSize: 15, fontWeight: type === "Break" ? 500 : 700, color: type === "Break" ? C.textGray : C.text, lineHeight: 1.4 }}>{title}</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: type === "Panel" ? C.heroRed : C.green, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 4 }}>{type}</div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: C.text, lineHeight: 1.4 }}>{title}</div>
                 </div>
                 {tag && (
                   <span style={{ background: C.bgSoft, border: `1px solid ${C.border}`, color: C.textGray, padding: "4px 12px", borderRadius: 999, fontSize: 11, fontWeight: 600, whiteSpace: "nowrap", flexShrink: 0 }}>{tag}</span>
