@@ -772,7 +772,7 @@ function Pricing() {
             {/* Price footer */}
             <div style={{ background: "#F8F9FB", borderTop: `1px solid ${C.border}`, padding: "22px 28px" }}>
               <div style={{ fontSize: 10, color: C.textGray, letterSpacing: 2, textTransform: "uppercase", marginBottom: 4 }}>Speaking · Early Bird</div>
-              <div style={{ fontSize: 44, fontWeight: 900, color: C.text, letterSpacing: -2, lineHeight: 1, marginBottom: 4 }}>$1,950</div>
+              <div style={{ fontSize: 44, fontWeight: 900, color: C.text, letterSpacing: -2, lineHeight: 1, marginBottom: 4 }}>$2,450</div>
               <div style={{ fontSize: 12, color: C.textGray, marginBottom: 18 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$2,950</span></div>
               <a href="mailto:denis@fsummit.net" className="price-btn-outline" style={{ display: "block", textAlign: "center", background: C.bg, border: `1.5px solid ${C.borderDark}`, color: C.text, padding: "13px 0", borderRadius: 10, fontSize: 13, fontWeight: 700, textDecoration: "none", transition: "background 0.2s" }}>Claim Speaking Slot →</a>
             </div>
