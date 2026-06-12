@@ -719,8 +719,8 @@ function Pricing() {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
           }
-          .price-card-1 { animation: floatUp 0.5s ease 0.1s forwards; opacity: 0; }
-          .price-card-2 { animation: floatUp 0.5s ease 0.22s forwards; opacity: 0; }
+          .price-card-1 { animation: floatUp 0.5s ease 0.22s forwards; opacity: 0; order: 2; }
+          .price-card-2 { animation: floatUp 0.5s ease 0.1s forwards; opacity: 0; order: 1; }
           .price-card-1:hover, .price-card-2:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.1) !important; }
           .shimmer-red {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
@@ -1052,6 +1052,100 @@ function CTABlock() {
   );
 }
 
+function TeamContact() {
+  const team = [
+    { initials: "DD", name: "Denys Dovgal", role: "CEO · Freedom Business Summit", email: "denis@fsummit.net", phone: "+1 415 316 36 38" },
+    { initials: "ED", name: "Eleonora Davtyan", role: "Partners & Sponsorships", email: "eleonora@fsummit.net", phone: null },
+    { initials: "KA", name: "Kristine Aghabekyan", role: "Partners & Sponsorships", email: "kristine@fsummit.net", phone: "+374 98 625 147" },
+  ];
+  return (
+    <section style={{ background: C.bg, padding: "64px 40px" }}>
+      <div style={{ maxWidth: 960, margin: "0 auto" }}>
+
+        {/* Become a Partner banner */}
+        <a href="mailto:denis@fsummit.net" style={{
+          display: "block", textAlign: "center",
+          background: `linear-gradient(90deg, ${C.green}, #9ee65c)`,
+          color: C.text, fontWeight: 800, fontSize: 18,
+          padding: "20px 0", borderRadius: 14,
+          textDecoration: "none", marginBottom: 32,
+          boxShadow: "0 4px 20px rgba(125,193,66,0.25)",
+        }}>Become a Partner →</a>
+
+        {/* Team cards */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 24 }}>
+          {team.map(({ initials, name, role, email, phone }, i) => (
+            <div key={name} style={{
+              background: C.bg,
+              border: `1px solid ${C.border}`,
+              borderLeft: i === 0 || i === 2 ? `4px solid ${C.green}` : `1px solid ${C.border}`,
+              borderRadius: 16, padding: "28px 24px",
+              display: "flex", flexDirection: "column", alignItems: "center",
+              textAlign: "center",
+            }}>
+              <div style={{ position: "relative", marginBottom: 16 }}>
+                <div style={{
+                  width: 80, height: 80, borderRadius: "50%",
+                  background: C.bgSoft, border: `2px solid ${C.border}`,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 22, fontWeight: 800, color: C.textGray,
+                }}>{initials}</div>
+                <div style={{
+                  position: "absolute", bottom: -2, right: -2,
+                  width: 28, height: 28, borderRadius: "50%",
+                  background: C.green, color: "#fff",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 10, fontWeight: 800, border: "2px solid #fff",
+                }}>FS</div>
+              </div>
+              <div style={{ fontSize: 17, fontWeight: 800, color: C.text, marginBottom: 4 }}>{name}</div>
+              <div style={{ fontSize: 13, color: C.textGray, marginBottom: 16 }}>{role}</div>
+
+              <a href={`mailto:${email}`} style={{
+                display: "flex", alignItems: "center", gap: 8,
+                border: `1px solid ${C.border}`, borderRadius: 999,
+                padding: "9px 18px", width: "100%", justifyContent: "center",
+                fontSize: 13, fontWeight: 600, color: C.text, textDecoration: "none",
+                marginBottom: phone ? 8 : 0, boxSizing: "border-box",
+              }}>✉️ {email}</a>
+
+              {phone && (
+                <a href={`tel:${phone.replace(/\s/g, "")}`} style={{
+                  display: "flex", alignItems: "center", gap: 8,
+                  border: `1px solid ${C.border}`, borderRadius: 999,
+                  padding: "9px 18px", width: "100%", justifyContent: "center",
+                  fontSize: 13, fontWeight: 600, color: C.text, textDecoration: "none",
+                  boxSizing: "border-box",
+                }}>💬 {phone}</a>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Website CTA */}
+        <div style={{
+          background: C.greenPale,
+          border: `1px solid ${C.green}30`,
+          borderRadius: 16, padding: "24px 32px",
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          flexWrap: "wrap", gap: 16,
+        }}>
+          <div>
+            <div style={{ fontSize: 13, color: C.textGray, marginBottom: 4 }}>Website</div>
+            <div style={{ fontSize: 22, fontWeight: 800, color: C.text }}>fsummit.net/usa</div>
+          </div>
+          <a href="https://fsummit.net/usa" style={{
+            background: C.green, color: "#fff",
+            padding: "12px 32px", borderRadius: 10,
+            fontSize: 14, fontWeight: 800, textDecoration: "none",
+          }}>Visit →</a>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
 function Footer() {
   return (
     <footer style={{ background: C.navy, borderTop: "1px solid rgba(255,255,255,0.07)", padding: "24px 40px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
@@ -1091,6 +1185,7 @@ export default function App() {
       <EB5Explainer />
       <Pricing />
       <CTABlock />
+      <TeamContact />
       <Footer />
     </div>
   );
