@@ -737,9 +737,7 @@ function Pricing() {
           .price-btn-outline:hover { background: #f5f5f5 !important; }
         `}</style>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 48 }}>
-
-          {/* Card 1 — Speaking & Visibility — comparison table format */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 24, marginBottom: 48 }}>
           <div className="price-card-1" style={{
             background: C.bg,
             border: `1.5px solid ${C.border}`,
@@ -824,7 +822,7 @@ function Pricing() {
             </div>
           </div>
 
-          {/* Card 2 — Brand Integration — white bg, red accents */}
+          {/* Card 2 — Brand Integration — comparison table format */}
           <div className="price-card-2" style={{
             background: C.bg,
             border: `1.5px solid ${C.heroRed}`,
@@ -839,37 +837,98 @@ function Pricing() {
             {/* Red top accent bar */}
             <div style={{ height: 4, background: `linear-gradient(90deg, ${C.heroRed}, #e8334a)` }} />
 
-            {/* Diagonal lines — red tint */}
-            <svg style={{ position: "absolute", top: 0, right: 0, opacity: 0.05, pointerEvents: "none" }} width="200" height="200" viewBox="0 0 200 200">
-              {[0,18,36,54,72,90,108,126].map(i => <line key={i} x1={200-i} y1="0" x2="200" y2={i} stroke={C.heroRed} strokeWidth="1.5"/>)}
-              {[0,18,36,54,72,90,108].map(i => <line key={`b${i}`} x1={92-i} y1="0" x2="200" y2={108+i} stroke={C.heroRed} strokeWidth="1.5"/>)}
-            </svg>
-
-            <div style={{ padding: "28px 28px 24px", flex: 1 }}>
-              <div style={{ marginBottom: 18 }}>
-                <span style={{ background: `${C.heroRed}12`, color: C.heroRed, fontSize: 10, fontWeight: 700, padding: "4px 12px", borderRadius: 999, letterSpacing: 1, textTransform: "uppercase", border: `1px solid ${C.heroRed}30` }}>Only ONE Brand Partner Per Event</span>
+            {/* Header */}
+            <div style={{ padding: "24px 28px 0" }}>
+              <div style={{ marginBottom: 8 }}>
+                <span style={{ background: `${C.heroRed}12`, color: C.heroRed, fontSize: 10, fontWeight: 700, padding: "4px 12px", borderRadius: 999, letterSpacing: 1, textTransform: "uppercase", border: `1px solid ${C.heroRed}30` }}>Pricing · Brand Integration</span>
               </div>
-              <div style={{ fontSize: 21, fontWeight: 800, color: C.text, marginBottom: 4, letterSpacing: -0.3 }}>Brand Integration Partnership</div>
-              <div style={{ fontSize: 12, color: C.textGray, marginBottom: 20, letterSpacing: 0.5 }}>4–6 weeks integration</div>
-              <p style={{ fontSize: 13, color: C.textMid, lineHeight: 1.7, marginBottom: 22 }}>
-                4–6 weeks integrated presence with <strong>Co-Created Content, Thought Leadership + Summit Exposure + Lead Generation + PR & Media Coverage.</strong>
-              </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
-                {["45-min keynote + panel participation", "Co-branded survey module", "Full attendee + scored leads list", "4–6 dedicated email broadcasts", "Geo-targeted paid ad integration", "Press release distribution", "Thought leadership article series", "Post-event AMA session", "Branded full post-event analytics report", "Exclusive category lock — no competitors"].map(f => (
-                  <div key={f} style={{ display: "flex", gap: 10, fontSize: 13, color: C.textMid, alignItems: "center" }}>
-                    <span style={{ width: 16, height: 16, borderRadius: "50%", background: `${C.heroRed}12`, border: `1.5px solid ${C.heroRed}50`, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 8, color: C.heroRed, fontWeight: 900, flexShrink: 0 }}>✓</span>
-                    {f}
-                  </div>
-                ))}
-              </div>
+              <div style={{ fontSize: 24, fontWeight: 800, color: C.text, marginBottom: 4, letterSpacing: -0.3 }}>Brand Integration Partnership</div>
+              <div style={{ fontSize: 13, color: C.textGray, marginBottom: 20 }}>An 4–6 week full summit integration — from pre-event content to summit exposure and post-event data.</div>
             </div>
 
-            {/* Price footer */}
-            <div style={{ background: "#F8F9FB", borderTop: `1px solid ${C.heroRed}20`, padding: "22px 28px" }}>
-              <div style={{ fontSize: 10, color: C.heroRed, letterSpacing: 2, textTransform: "uppercase", marginBottom: 4, fontWeight: 700 }}>Strategic · Early Bird</div>
-              <div style={{ fontSize: 44, fontWeight: 900, color: C.text, letterSpacing: -2, lineHeight: 1, marginBottom: 4 }}>$5,950</div>
-              <div style={{ fontSize: 12, color: C.textGray, marginBottom: 18 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$6,950</span></div>
-              <a href="mailto:denis@fsummit.net" className="price-btn-red" style={{ display: "block", textAlign: "center", background: C.heroRed, color: "#fff", padding: "13px 0", borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: "none" }}>Claim Brand Integration Slot →</a>
+            {/* Comparison table */}
+            <div style={{ flex: 1, overflowX: "auto" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+                <thead>
+                  <tr style={{ borderBottom: `1px solid ${C.border}` }}>
+                    <th style={{ padding: "12px 20px", textAlign: "left", color: C.textGray, fontWeight: 600, fontSize: 11, letterSpacing: 1, textTransform: "uppercase", width: "46%", background: C.bgSoft }}>Feature</th>
+                    <th style={{ padding: "12px 12px", textAlign: "center", background: "#F0F9E8", borderLeft: `1px solid ${C.border}`, fontSize: 11, fontWeight: 700, color: C.greenDark, letterSpacing: 1, textTransform: "uppercase" }}>Growth</th>
+                    <th style={{ padding: "12px 12px", textAlign: "center", background: `${C.heroRed}08`, borderLeft: `1px solid ${C.border}`, fontSize: 11, fontWeight: 700, color: C.heroRed, letterSpacing: 1, textTransform: "uppercase" }}>Strategic</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { group: "Branding Visibility", rows: [
+                      { label: '"Presented by" headline logo placement', growth: false, strategic: true },
+                      { label: "Website feature block (logo + brand story)", growth: true, strategic: true },
+                      { label: "Exclusive Partner Per Industry & Category", growth: true, strategic: true },
+                      { label: "Mention in all early-stage PR as Co-Organizer", growth: false, strategic: true },
+                      { label: "Custom Branded Frame in all live sessions", growth: false, strategic: true },
+                      { label: "Sponsored Video Ads", growth: true, strategic: true },
+                    ]},
+                    { group: "Thought Leadership", rows: [
+                      { label: "Keynote / Panel", growth: "30 min Keynote", strategic: "45 min Keynote+Panel" },
+                      { label: "Summit Industry Survey", growth: "Highlight", strategic: "Co-Branded" },
+                      { label: "Thought Leadership Articles (Substack)", growth: "1 article", strategic: "3 articles" },
+                      { label: "Podcast/Interview Recording (45 min)", growth: false, strategic: true },
+                    ]},
+                    { group: "Audience Insights & Prospects", rows: [
+                      { label: "Online Session Attendee List", growth: true, strategic: true },
+                      { label: "Registered Attendee via UTM Ads Tag", growth: true, strategic: true },
+                      { label: "Survey Data Opt-in Attendee List (250+)", growth: true, strategic: true },
+                      { label: "Full Registered Event Attendees List", growth: false, strategic: true },
+                    ]},
+                    { group: "Media & PR", rows: [
+                      { label: "Dedicated Email Newsletter 10K List", growth: "4 emails", strategic: "6 emails" },
+                      { label: "Press Release Distribution", growth: true, strategic: true },
+                      { label: "Exclusive Interview in Tier 1 Media", growth: false, strategic: true },
+                    ]},
+                    { group: "Post Event", rows: [
+                      { label: "Branded Post Event Analytics Report", growth: true, strategic: true },
+                      { label: "Post event AMA Session with attendees", growth: false, strategic: true },
+                      { label: "EB-5 Investor Playbook (PDF)", growth: true, strategic: true },
+                      { label: "Integration Timeline", growth: "4 Weeks", strategic: "6 Weeks" },
+                    ]},
+                  ].map(({ group, rows }) => (
+                    <>
+                      <tr key={group} style={{ background: C.bgSoft }}>
+                        <td colSpan={3} style={{ padding: "8px 20px", fontSize: 10, fontWeight: 700, color: C.textGray, letterSpacing: 1.5, textTransform: "uppercase", borderTop: `1px solid ${C.border}` }}>{group}</td>
+                      </tr>
+                      {rows.map(({ label, growth, strategic }) => (
+                        <tr key={label} style={{ borderBottom: `1px solid ${C.border}` }}>
+                          <td style={{ padding: "12px 20px", color: C.textMid }}>{label}</td>
+                          <td style={{ padding: "12px 12px", textAlign: "center", background: "#F0F9E8", borderLeft: `1px solid ${C.border}` }}>
+                            {growth === true && <span style={{ color: C.green, fontSize: 16, fontWeight: 700 }}>✓</span>}
+                            {growth === false && <span style={{ color: C.borderDark, fontSize: 14 }}>–</span>}
+                            {typeof growth === "string" && <span style={{ fontSize: 12, fontWeight: 700, color: C.greenDark }}>{growth}</span>}
+                          </td>
+                          <td style={{ padding: "12px 12px", textAlign: "center", background: `${C.heroRed}05`, borderLeft: `1px solid ${C.border}` }}>
+                            {strategic === true && <span style={{ color: C.green, fontSize: 16, fontWeight: 700 }}>✓</span>}
+                            {strategic === false && <span style={{ color: C.borderDark, fontSize: 14 }}>–</span>}
+                            {typeof strategic === "string" && <span style={{ fontSize: 12, fontWeight: 700, color: C.heroRed }}>{strategic}</span>}
+                          </td>
+                        </tr>
+                      ))}
+                    </>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Dual price footer */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderTop: `1px solid ${C.border}` }}>
+              <div style={{ background: "#F0F9E8", padding: "22px 24px", borderRight: `1px solid ${C.border}` }}>
+                <div style={{ fontSize: 10, color: C.greenDark, letterSpacing: 2, textTransform: "uppercase", marginBottom: 4, fontWeight: 700 }}>Growth · Early Bird</div>
+                <div style={{ fontSize: 32, fontWeight: 900, color: C.text, letterSpacing: -1.5, lineHeight: 1, marginBottom: 4 }}>$3,950</div>
+                <div style={{ fontSize: 11, color: C.textGray, marginBottom: 14 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$4,950</span></div>
+                <a href="mailto:denis@fsummit.net" className="price-btn-outline" style={{ display: "block", textAlign: "center", background: C.green, color: "#fff", padding: "11px 0", borderRadius: 10, fontSize: 12, fontWeight: 700, textDecoration: "none", border: "none" }}>Claim Growth Slot →</a>
+              </div>
+              <div style={{ background: `${C.heroRed}08`, padding: "22px 24px" }}>
+                <div style={{ fontSize: 10, color: C.heroRed, letterSpacing: 2, textTransform: "uppercase", marginBottom: 4, fontWeight: 700 }}>Strategic · Early Bird</div>
+                <div style={{ fontSize: 32, fontWeight: 900, color: C.text, letterSpacing: -1.5, lineHeight: 1, marginBottom: 4 }}>$5,950</div>
+                <div style={{ fontSize: 11, color: C.textGray, marginBottom: 14 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$6,950</span></div>
+                <a href="mailto:denis@fsummit.net" className="price-btn-red" style={{ display: "block", textAlign: "center", background: C.heroRed, color: "#fff", padding: "11px 0", borderRadius: 10, fontSize: 12, fontWeight: 700, textDecoration: "none" }}>Claim Strategic Slot →</a>
+              </div>
             </div>
           </div>
 
