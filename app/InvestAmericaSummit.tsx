@@ -846,66 +846,61 @@ function Pricing() {
               <div style={{ fontSize: 13, color: C.textGray, marginBottom: 20 }}>An 4–6 week full summit integration — from pre-event content to summit exposure and post-event data.</div>
             </div>
 
-            {/* Comparison table */}
+            {/* Comparison table — Strategic only */}
             <div style={{ flex: 1, overflowX: "auto" }}>
               <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
                 <thead>
                   <tr style={{ borderBottom: `1px solid ${C.border}` }}>
-                    <th style={{ padding: "12px 20px", textAlign: "left", color: C.textGray, fontWeight: 600, fontSize: 11, letterSpacing: 1, textTransform: "uppercase", width: "46%", background: C.bgSoft }}>Feature</th>
-                    <th style={{ padding: "12px 12px", textAlign: "center", background: "#F0F9E8", borderLeft: `1px solid ${C.border}`, fontSize: 11, fontWeight: 700, color: C.greenDark, letterSpacing: 1, textTransform: "uppercase" }}>Growth</th>
-                    <th style={{ padding: "12px 12px", textAlign: "center", background: `${C.heroRed}08`, borderLeft: `1px solid ${C.border}`, fontSize: 11, fontWeight: 700, color: C.heroRed, letterSpacing: 1, textTransform: "uppercase" }}>Strategic</th>
+                    <th style={{ padding: "12px 20px", textAlign: "left", color: C.textGray, fontWeight: 600, fontSize: 11, letterSpacing: 1, textTransform: "uppercase", width: "62%", background: C.bgSoft }}>Feature</th>
+                    <th style={{ padding: "12px 16px", textAlign: "center", background: `${C.heroRed}08`, borderLeft: `1px solid ${C.border}`, fontSize: 11, fontWeight: 700, color: C.heroRed, letterSpacing: 1, textTransform: "uppercase" }}>Strategic</th>
                   </tr>
                 </thead>
                 <tbody>
                   {[
                     { group: "Branding Visibility", rows: [
-                      { label: '"Presented by" headline logo placement', growth: false, strategic: true },
-                      { label: "Website feature block (logo + brand story)", growth: true, strategic: true },
-                      { label: "Exclusive Partner Per Industry & Category", growth: true, strategic: true },
-                      { label: "Mention in all early-stage PR as Co-Organizer", growth: false, strategic: true },
-                      { label: "Custom Branded Frame in all live sessions", growth: false, strategic: true },
-                      { label: "Sponsored Video Ads", growth: true, strategic: true },
+                      { label: '"Presented by" headline logo placement', val: true },
+                      { label: "Website feature block (logo + brand story)", val: true },
+                      { label: "Exclusive Partner Per Industry & Category", val: true },
+                      { label: "Mention in all early-stage PR as Co-Organizer", val: true },
+                      { label: "Custom Branded Frame in all live sessions", val: true },
+                      { label: "Sponsored Video Ads", val: true },
                     ]},
                     { group: "Thought Leadership", rows: [
-                      { label: "Keynote / Panel", growth: "30 min Keynote", strategic: "45 min Keynote+Panel" },
-                      { label: "Summit Industry Survey", growth: "Highlight", strategic: "Co-Branded" },
-                      { label: "Thought Leadership Articles (Substack)", growth: "1 article", strategic: "3 articles" },
-                      { label: "Podcast/Interview Recording (45 min)", growth: false, strategic: true },
+                      { label: "Keynote / Panel", val: "45 min Keynote+Panel" },
+                      { label: "Summit Industry Survey", val: "Co-Branded" },
+                      { label: "Thought Leadership Articles (Substack)", val: "3 articles" },
+                      { label: "Podcast/Interview Recording (45 min)", val: true },
                     ]},
                     { group: "Audience Insights & Prospects", rows: [
-                      { label: "Online Session Attendee List", growth: true, strategic: true },
-                      { label: "Registered Attendee via UTM Ads Tag", growth: true, strategic: true },
-                      { label: "Survey Data Opt-in Attendee List (250+)", growth: true, strategic: true },
-                      { label: "Full Registered Event Attendees List", growth: false, strategic: true },
+                      { label: "Online Session Attendee List", val: true },
+                      { label: "Registered Attendee via UTM Ads Tag", val: true },
+                      { label: "Survey Data Opt-in Attendee List (250+)", val: true },
+                      { label: "Full Registered Event Attendees List", val: true },
                     ]},
                     { group: "Media & PR", rows: [
-                      { label: "Dedicated Email Newsletter 10K List", growth: "4 emails", strategic: "6 emails" },
-                      { label: "Press Release Distribution", growth: true, strategic: true },
-                      { label: "Exclusive Interview in Tier 1 Media", growth: false, strategic: true },
+                      { label: "Dedicated Email Newsletter 10K List", val: "6 emails" },
+                      { label: "Press Release Distribution", val: true },
+                      { label: "Exclusive Interview in Tier 1 Media", val: true },
                     ]},
                     { group: "Post Event", rows: [
-                      { label: "Branded Post Event Analytics Report", growth: true, strategic: true },
-                      { label: "Post event AMA Session with attendees", growth: false, strategic: true },
-                      { label: "EB-5 Investor Playbook (PDF)", growth: true, strategic: true },
-                      { label: "Integration Timeline", growth: "4 Weeks", strategic: "6 Weeks" },
+                      { label: "Branded Post Event Analytics Report", val: true },
+                      { label: "Post event AMA Session with attendees", val: true },
+                      { label: "EB-5 Investor Playbook (PDF)", val: true },
+                      { label: "Integration Timeline", val: "6 Weeks" },
                     ]},
                   ].map(({ group, rows }) => (
                     <>
                       <tr key={group} style={{ background: C.bgSoft }}>
-                        <td colSpan={3} style={{ padding: "8px 20px", fontSize: 10, fontWeight: 700, color: C.textGray, letterSpacing: 1.5, textTransform: "uppercase", borderTop: `1px solid ${C.border}` }}>{group}</td>
+                        <td colSpan={2} style={{ padding: "8px 20px", fontSize: 10, fontWeight: 700, color: C.textGray, letterSpacing: 1.5, textTransform: "uppercase", borderTop: `1px solid ${C.border}` }}>{group}</td>
                       </tr>
-                      {rows.map(({ label, growth, strategic }) => (
+                      {rows.map(({ label, val }) => (
                         <tr key={label} style={{ borderBottom: `1px solid ${C.border}` }}>
                           <td style={{ padding: "12px 20px", color: C.textMid }}>{label}</td>
-                          <td style={{ padding: "12px 12px", textAlign: "center", background: "#F0F9E8", borderLeft: `1px solid ${C.border}` }}>
-                            {growth === true && <span style={{ color: C.green, fontSize: 16, fontWeight: 700 }}>✓</span>}
-                            {growth === false && <span style={{ color: C.borderDark, fontSize: 14 }}>–</span>}
-                            {typeof growth === "string" && <span style={{ fontSize: 12, fontWeight: 700, color: C.greenDark }}>{growth}</span>}
-                          </td>
-                          <td style={{ padding: "12px 12px", textAlign: "center", background: `${C.heroRed}05`, borderLeft: `1px solid ${C.border}` }}>
-                            {strategic === true && <span style={{ color: C.green, fontSize: 16, fontWeight: 700 }}>✓</span>}
-                            {strategic === false && <span style={{ color: C.borderDark, fontSize: 14 }}>–</span>}
-                            {typeof strategic === "string" && <span style={{ fontSize: 12, fontWeight: 700, color: C.heroRed }}>{strategic}</span>}
+                          <td style={{ padding: "12px 16px", textAlign: "center", background: `${C.heroRed}05`, borderLeft: `1px solid ${C.border}` }}>
+                            {val === true
+                              ? <span style={{ color: C.green, fontSize: 16, fontWeight: 700 }}>✓</span>
+                              : <span style={{ fontSize: 12, fontWeight: 700, color: C.heroRed }}>{val}</span>
+                            }
                           </td>
                         </tr>
                       ))}
@@ -915,20 +910,12 @@ function Pricing() {
               </table>
             </div>
 
-            {/* Dual price footer */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderTop: `1px solid ${C.border}` }}>
-              <div style={{ background: "#F0F9E8", padding: "22px 24px", borderRight: `1px solid ${C.border}` }}>
-                <div style={{ fontSize: 10, color: C.greenDark, letterSpacing: 2, textTransform: "uppercase", marginBottom: 4, fontWeight: 700 }}>Growth · Early Bird</div>
-                <div style={{ fontSize: 32, fontWeight: 900, color: C.text, letterSpacing: -1.5, lineHeight: 1, marginBottom: 4 }}>$3,950</div>
-                <div style={{ fontSize: 11, color: C.textGray, marginBottom: 14 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$4,950</span></div>
-                <a href="mailto:denis@fsummit.net" className="price-btn-outline" style={{ display: "block", textAlign: "center", background: C.green, color: "#fff", padding: "11px 0", borderRadius: 10, fontSize: 12, fontWeight: 700, textDecoration: "none", border: "none" }}>Claim Growth Slot →</a>
-              </div>
-              <div style={{ background: `${C.heroRed}08`, padding: "22px 24px" }}>
-                <div style={{ fontSize: 10, color: C.heroRed, letterSpacing: 2, textTransform: "uppercase", marginBottom: 4, fontWeight: 700 }}>Strategic · Early Bird</div>
-                <div style={{ fontSize: 32, fontWeight: 900, color: C.text, letterSpacing: -1.5, lineHeight: 1, marginBottom: 4 }}>$5,950</div>
-                <div style={{ fontSize: 11, color: C.textGray, marginBottom: 14 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$6,950</span></div>
-                <a href="mailto:denis@fsummit.net" className="price-btn-red" style={{ display: "block", textAlign: "center", background: C.heroRed, color: "#fff", padding: "11px 0", borderRadius: 10, fontSize: 12, fontWeight: 700, textDecoration: "none" }}>Claim Strategic Slot →</a>
-              </div>
+            {/* Price footer */}
+            <div style={{ background: `${C.heroRed}08`, borderTop: `1px solid ${C.heroRed}20`, padding: "22px 28px" }}>
+              <div style={{ fontSize: 10, color: C.heroRed, letterSpacing: 2, textTransform: "uppercase", marginBottom: 4, fontWeight: 700 }}>Strategic · Early Bird</div>
+              <div style={{ fontSize: 44, fontWeight: 900, color: C.text, letterSpacing: -2, lineHeight: 1, marginBottom: 4 }}>$5,950</div>
+              <div style={{ fontSize: 12, color: C.textGray, marginBottom: 18 }}>Standard (June 15th): <span style={{ textDecoration: "line-through" }}>$6,950</span></div>
+              <a href="mailto:denis@fsummit.net" className="price-btn-red" style={{ display: "block", textAlign: "center", background: C.heroRed, color: "#fff", padding: "13px 0", borderRadius: 10, fontSize: 13, fontWeight: 800, textDecoration: "none" }}>Claim Brand Integration Slot →</a>
             </div>
           </div>
 
