@@ -593,7 +593,7 @@ function EB5Explainer() {
         <div style={{ border: `1px solid ${C.border}`, borderRadius: 16, overflow: "hidden", marginBottom: 40 }}>
           {[
             {
-              phase: "Phase 1", weeks: "Weeks 1–3", title: "Onboarding & Content Setup",
+              phase: "Phase 1", weeks: "Weeks 1–2", title: "Onboarding & Content Setup",
               color: C.green,
               items: [
                 "Kick-off call to align on target audience, ICP, and key talking points",
@@ -603,7 +603,7 @@ function EB5Explainer() {
               ],
             },
             {
-              phase: "Phase 2", weeks: "Weeks 4–8", title: "Pre-Event Promotion & Audience Building",
+              phase: "Phase 2", weeks: "Weeks 2–4", title: "Pre-Event Promotion & Audience Building",
               color: "#3B82F6",
               items: [
                 "Geo-targeted paid ads featuring your brand run across Meta and LinkedIn",
@@ -624,7 +624,7 @@ function EB5Explainer() {
               ],
             },
             {
-              phase: "Phase 4", weeks: "Weeks 9–12", title: "Post-Event Lead Delivery & Intelligence",
+              phase: "Phase 4", weeks: "Weeks 5–6", title: "Post-Event Lead Delivery & Intelligence",
               color: "#F59E0B",
               items: [
                 "Full HOT / WARM / COLD scored lead list delivered via Airtable or CSV",
@@ -850,9 +850,9 @@ function Pricing() {
                 <span style={{ background: `${C.heroRed}12`, color: C.heroRed, fontSize: 10, fontWeight: 700, padding: "4px 12px", borderRadius: 999, letterSpacing: 1, textTransform: "uppercase", border: `1px solid ${C.heroRed}30` }}>Only ONE Brand Partner Per Event</span>
               </div>
               <div style={{ fontSize: 21, fontWeight: 800, color: C.text, marginBottom: 4, letterSpacing: -0.3 }}>Brand Integration Partnership</div>
-              <div style={{ fontSize: 12, color: C.textGray, marginBottom: 20, letterSpacing: 0.5 }}>8–12 weeks integration</div>
+              <div style={{ fontSize: 12, color: C.textGray, marginBottom: 20, letterSpacing: 0.5 }}>4–6 weeks integration</div>
               <p style={{ fontSize: 13, color: C.textMid, lineHeight: 1.7, marginBottom: 22 }}>
-                8–12 weeks integrated presence with <strong>Co-Created Content, Thought Leadership + Summit Exposure + Lead Generation + PR & Media Coverage.</strong>
+                4–6 weeks integrated presence with <strong>Co-Created Content, Thought Leadership + Summit Exposure + Lead Generation + PR & Media Coverage.</strong>
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 9 }}>
                 {["45-min keynote + panel participation", "Co-branded survey module", "Full attendee + scored leads list", "4–6 dedicated email broadcasts", "Geo-targeted paid ad integration", "Press release distribution", "Thought leadership article series", "Post-event AMA session", "Branded full post-event analytics report", "Exclusive category lock — no competitors"].map(f => (
@@ -941,7 +941,7 @@ function Pricing() {
           {/* Timeline bar */}
           <div style={{ marginTop: 32, textAlign: "center" }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: C.text, marginBottom: 16 }}>
-              Partnership Engagement Timeline 8–12 Weeks (From Pre to Post Event)
+              Partnership Engagement Timeline 4–6 Weeks (From Pre to Post Event)
             </div>
             <div style={{ position: "relative", height: 12, borderRadius: 999, overflow: "hidden", marginBottom: 8 }}>
               <div style={{
@@ -958,12 +958,12 @@ function Pricing() {
                 <div style={{ fontSize: 12, fontWeight: 700, color: "#B45309" }}>Event Day</div>
               </div>
               <div style={{ textAlign: "right" }}>
-                <div style={{ fontSize: 11, color: C.textGray }}>Week 12</div>
+                <div style={{ fontSize: 11, color: C.textGray }}>Week 6</div>
                 <div style={{ fontSize: 12, fontWeight: 700, color: "#1E40AF" }}>Post Event</div>
               </div>
             </div>
             <div style={{ fontSize: 12, color: C.textGray, marginTop: 8 }}>
-              Brand Integration includes full 8–12 week presence — not just the event day
+              Brand Integration includes full 4–6 week presence — not just the event day
             </div>
           </div>
         </div>
