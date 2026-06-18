@@ -380,7 +380,7 @@ function SpeakerVideos() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, marginBottom: 48 }}>
           {videos.map(({ id, name, desc, tag }) => (
             <div key={id} style={{ borderRadius: 16, overflow: "hidden", background: "#000", boxShadow: "0 8px 32px rgba(0,0,0,0.18)", display: "flex", flexDirection: "column" }}>
-              <div style={{ position: "relative", paddingBottom: "177.78%", background: "#000" }}>
+              <div style={{ position: "relative", paddingBottom: "145.48%", background: "#000" }}>
                 <iframe
                   src={`https://player.mux.com/${id}?autoplay=false&preload=metadata`}
                   style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", display: "block" }}
