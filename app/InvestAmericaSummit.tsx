@@ -359,6 +359,45 @@ function Funnel() {
   );
 }
 
+function SpeakerVideos() {
+  const videos = [
+    { id: "rEFspB1T1CGSeArNuVS7YkvUfXj01tDaK1MoXT02Op8300", name: "EB-5 Expert Session", desc: "Regional Center Due Diligence" },
+    { id: "sLrQnGBk5slwNvHRGfoTkvQl5RNle1fekxnTEmdWSFo", name: "Investor Pathway Talk", desc: "EB-5 vs E-2 Strategy" },
+    { id: "XWxn5PCIJYSjxEyQHrMkhIm2HkSEvvdWaW9Md9RBYrI", name: "Post-Visa Structuring", desc: "U.S. Tax & Banking Setup" },
+  ];
+  return (
+    <section style={{ background: C.bgSection, padding: "72px 40px" }}>
+      <div style={{ maxWidth: 960, margin: "0 auto" }}>
+        <GreenLabel>Summit Speakers</GreenLabel>
+        <h2 style={{ fontSize: 36, fontWeight: 800, color: C.text, marginBottom: 8, letterSpacing: -0.5 }}>
+          Speakers That Drive Engagement
+        </h2>
+        <p style={{ fontSize: 15, color: C.textGray, marginBottom: 40, maxWidth: 560 }}>
+          Real sessions from previous FBS editions — the format, depth, and audience engagement your brand will be featured alongside.
+        </p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+          {videos.map(({ id, name, desc }) => (
+            <div key={id} style={{ borderRadius: 14, overflow: "hidden", border: `1px solid ${C.border}`, background: C.bg, boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+              <div style={{ position: "relative", paddingBottom: "56.25%", background: "#000" }}>
+                <iframe
+                  src={`https://player.mux.com/${id}`}
+                  style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <div style={{ padding: "16px 18px" }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: C.text, marginBottom: 4 }}>{name}</div>
+                <div style={{ fontSize: 12, color: C.textGray }}>{desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Speakers() {
   const speakers = [
     { initials: "JR", name: "James Rowling", role: "Senior EB-5 Immigration Attorney", firm: "Rowling Immigration Law · New York", tag: "EB-5 Legal" },
@@ -1180,6 +1219,7 @@ export default function App() {
       <KeyTopics />
       <Audience />
       <Funnel />
+      <SpeakerVideos />
       <Speakers />
       <Agenda />
       <EB5Explainer />
