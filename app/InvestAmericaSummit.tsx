@@ -361,9 +361,9 @@ function Funnel() {
 
 function SpeakerVideos() {
   const videos = [
-    { id: "rEFspB1T1CGSeArNuVS7YkvUfXj01tDaK1MoXT02Op8300", name: "EB-5 Expert Session", desc: "Regional Center Due Diligence" },
-    { id: "sLrQnGBk5slwNvHRGfoTkvQl5RNle1fekxnTEmdWSFo", name: "Investor Pathway Talk", desc: "EB-5 vs E-2 Strategy" },
-    { id: "XWxn5PCIJYSjxEyQHrMkhIm2HkSEvvdWaW9Md9RBYrI", name: "Post-Visa Structuring", desc: "U.S. Tax & Banking Setup" },
+    { id: "rEFspB1T1CGSeArNuVS7YkvUfXj01tDaK1MoXT02Op8300", name: "EB-5 Expert Session", desc: "Regional Center Due Diligence", tag: "EB-5" },
+    { id: "sLrQnGBk5slwNvHRGfoTkvQl5RNle1fekxnTEmdWSFo", name: "Investor Pathway Talk", desc: "EB-5 vs E-2 Strategy", tag: "Strategy" },
+    { id: "XWxn5PCIJYSjxEyQHrMkhIm2HkSEvvdWaW9Md9RBYrI", name: "Post-Visa Structuring", desc: "U.S. Tax & Banking Setup", tag: "Tax & Structure" },
   ];
   return (
     <section style={{ background: C.bgSection, padding: "72px 40px" }}>
@@ -375,24 +375,115 @@ function SpeakerVideos() {
         <p style={{ fontSize: 15, color: C.textGray, marginBottom: 40, maxWidth: 560 }}>
           Real sessions from previous FBS editions — the format, depth, and audience engagement your brand will be featured alongside.
         </p>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
-          {videos.map(({ id, name, desc }) => (
-            <div key={id} style={{ borderRadius: 14, overflow: "hidden", border: `1px solid ${C.border}`, background: C.bg, boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-              <div style={{ position: "relative", paddingBottom: "56.25%", background: "#000" }}>
+
+        {/* Videos — full width, no black bars */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, marginBottom: 48 }}>
+          {videos.map(({ id, name, desc, tag }) => (
+            <div key={id} style={{ borderRadius: 16, overflow: "hidden", background: C.navy, boxShadow: "0 4px 24px rgba(0,0,0,0.12)", position: "relative" }}>
+              {/* Video — object-fit cover via allow="..." and mux player fills container */}
+              <div style={{ position: "relative", width: "100%", paddingBottom: "56.25%" }}>
                 <iframe
-                  src={`https://player.mux.com/${id}`}
-                  style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
-                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+                  src={`https://player.mux.com/${id}?autoplay=false&loop=false&preload=metadata`}
+                  style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", display: "block" }}
+                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
                   allowFullScreen
                 />
               </div>
-              <div style={{ padding: "16px 18px" }}>
-                <div style={{ fontSize: 14, fontWeight: 700, color: C.text, marginBottom: 4 }}>{name}</div>
-                <div style={{ fontSize: 12, color: C.textGray }}>{desc}</div>
+
+              {/* Branded plaque below video */}
+              <div style={{
+                background: C.navy,
+                padding: "14px 18px",
+                display: "flex", alignItems: "center", justifyContent: "space-between",
+              }}>
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginBottom: 2 }}>{name}</div>
+                  <div style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>{desc}</div>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
+                  <span style={{
+                    background: C.heroRed, color: "#fff",
+                    fontSize: 9, fontWeight: 700, padding: "3px 8px",
+                    borderRadius: 4, letterSpacing: 1, textTransform: "uppercase",
+                  }}>{tag}</span>
+                  <div style={{
+                    width: 26, height: 26, borderRadius: "50%",
+                    background: C.green, color: "#fff",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: 8, fontWeight: 800,
+                  }}>FS</div>
+                </div>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Partners Engagement block */}
+        <div style={{ background: C.bg, border: `1px solid ${C.border}`, borderRadius: 16, padding: "36px 40px" }}>
+          <GreenLabel>Partners Engagement</GreenLabel>
+          <h3 style={{ fontSize: 28, fontWeight: 800, color: C.text, marginBottom: 12, letterSpacing: -0.3 }}>
+            Partners Engagement
+          </h3>
+          <p style={{ fontSize: 15, color: C.textGray, maxWidth: 660, lineHeight: 1.75, marginBottom: 36 }}>
+            Our partners get direct access to real data on audience behavior, investment interests, and mobility trends — the kind of intelligence that drives deals.
+          </p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 0, borderRadius: 12, overflow: "hidden", border: `1px solid ${C.border}` }}>
+            {[
+              {
+                label: "Pre Event Exposure", bg: C.green, color: "#fff",
+                items: ["Geo-targeted video ads (Impressions & CPM)", "Press release metrics and reach", "Registration driven by ads (UTM)", "CTR to landing page"],
+              },
+              {
+                label: "Event Brand Awareness", bg: "#FEF9C3", color: "#713F12",
+                items: ["Keynote or panel talk", "Partner logo during live-stream", "Free lead offer (ebook, consult, QR scan)", "Social mentions using event hashtag", "Live session viewers"],
+              },
+              {
+                label: "Post Event Engagement", bg: "#EFF6FF", color: "#1E40AF",
+                items: ["Full attendee survey", "Behavior and interest data", "Dedicated email broadcast and articles", "Number of qualified leads", "Open and click CTR data"],
+              },
+            ].map(({ label, bg, color, items }) => (
+              <div key={label} style={{ padding: "24px 22px", borderRight: label !== "Post Event Engagement" ? `1px solid ${C.border}` : "none" }}>
+                <div style={{ display: "inline-block", background: bg, color, fontSize: 12, fontWeight: 800, padding: "6px 16px", borderRadius: 999, marginBottom: 20 }}>{label}</div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                  {items.map((item, i) => (
+                    <div key={i} style={{ display: "flex", gap: 10, fontSize: 13, color: C.textMid, alignItems: "flex-start" }}>
+                      <span style={{ color: C.textGray, fontWeight: 700, flexShrink: 0, minWidth: 16 }}>{i + 1}.</span>
+                      <span style={{ lineHeight: 1.5 }}>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Timeline bar */}
+          <div style={{ marginTop: 28, textAlign: "center" }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: C.text, marginBottom: 12 }}>
+              Partnership Engagement Timeline 4–6 Weeks (From Pre to Post Event)
+            </div>
+            <div style={{ position: "relative", height: 10, borderRadius: 999, overflow: "hidden", marginBottom: 8 }}>
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, #7DC142, #A3D977, #BEE08A, #C8E6A0, #93C5D8, #6BAED6)" }} />
+            </div>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div style={{ textAlign: "left" }}>
+                <div style={{ fontSize: 11, color: C.textGray }}>Week 1</div>
+                <div style={{ fontSize: 12, fontWeight: 700, color: C.green }}>Pre Event</div>
+              </div>
+              <div style={{ textAlign: "center" }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: "#B45309" }}>Event Day</div>
+              </div>
+              <div style={{ textAlign: "right" }}>
+                <div style={{ fontSize: 11, color: C.textGray }}>Week 6</div>
+                <div style={{ fontSize: 12, fontWeight: 700, color: "#1E40AF" }}>Post Event</div>
+              </div>
+            </div>
+            <div style={{ fontSize: 12, color: C.textGray, marginTop: 8 }}>
+              Brand Integration includes full 4–6 week presence — not just the event day
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );
@@ -958,99 +1049,6 @@ function Pricing() {
             </div>
           </div>
 
-        </div>
-
-        {/* Partners Engagement — 3-column breakdown */}
-        <div style={{ background: C.bg, border: `1px solid ${C.border}`, borderRadius: 16, padding: "36px 40px", marginBottom: 40 }}>
-          <GreenLabel>Partners Engagement</GreenLabel>
-          <h3 style={{ fontSize: 24, fontWeight: 800, color: C.text, marginBottom: 8, letterSpacing: -0.3 }}>Partners Engagement</h3>
-          <p style={{ fontSize: 14, color: C.textGray, marginBottom: 32, maxWidth: 640, lineHeight: 1.65 }}>
-            Our partners get direct access to real data on audience behavior, investment interests, and mobility trends — the kind of intelligence that drives deals.
-          </p>
-
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 0, borderRadius: 12, overflow: "hidden", border: `1px solid ${C.border}` }}>
-            {[
-              {
-                label: "Pre Event Exposure",
-                bg: C.green, color: "#fff",
-                items: [
-                  "Geo-targeted video ads (Impressions & CPM)",
-                  "Press release metrics and reach",
-                  "Registration driven by ads (UTM)",
-                  "CTR to landing page",
-                ],
-              },
-              {
-                label: "Event Brand Awareness",
-                bg: "#FEF9C3", color: "#713F12",
-                items: [
-                  "Keynote or panel talk",
-                  "Partner logo during live-stream",
-                  "Free lead offer (ebook, consult, QR scan)",
-                  "Social mentions using event hashtag",
-                  "Live session viewers",
-                ],
-              },
-              {
-                label: "Post Event Engagement",
-                bg: "#EFF6FF", color: "#1E40AF",
-                items: [
-                  "Full attendee survey",
-                  "Behavior and interest data",
-                  "Dedicated email broadcast and articles",
-                  "Number of qualified leads",
-                  "Open and click CTR data",
-                ],
-              },
-            ].map(({ label, bg, color, items }) => (
-              <div key={label} style={{ padding: "24px 24px", borderRight: label !== "Post Event Engagement" ? `1px solid ${C.border}` : "none" }}>
-                <div style={{
-                  display: "inline-block",
-                  background: bg, color,
-                  fontSize: 12, fontWeight: 800,
-                  padding: "6px 16px", borderRadius: 999,
-                  marginBottom: 20,
-                }}>{label}</div>
-                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                  {items.map((item, i) => (
-                    <div key={i} style={{ display: "flex", gap: 10, fontSize: 13, color: C.textMid, alignItems: "flex-start" }}>
-                      <span style={{ color: C.textGray, fontWeight: 700, flexShrink: 0, minWidth: 16 }}>{i + 1}.</span>
-                      <span style={{ lineHeight: 1.5 }}>{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Timeline bar */}
-          <div style={{ marginTop: 32, textAlign: "center" }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: C.text, marginBottom: 16 }}>
-              Partnership Engagement Timeline 4–6 Weeks (From Pre to Post Event)
-            </div>
-            <div style={{ position: "relative", height: 12, borderRadius: 999, overflow: "hidden", marginBottom: 8 }}>
-              <div style={{
-                position: "absolute", inset: 0,
-                background: "linear-gradient(to right, #7DC142, #A3D977, #BEE08A, #C8E6A0, #B8D9CC, #93C5D8, #6BAED6)",
-              }} />
-            </div>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <div style={{ textAlign: "left" }}>
-                <div style={{ fontSize: 11, color: C.textGray }}>Week 1</div>
-                <div style={{ fontSize: 12, fontWeight: 700, color: C.green }}>Pre Event</div>
-              </div>
-              <div style={{ textAlign: "center" }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: "#B45309" }}>Event Day</div>
-              </div>
-              <div style={{ textAlign: "right" }}>
-                <div style={{ fontSize: 11, color: C.textGray }}>Week 6</div>
-                <div style={{ fontSize: 12, fontWeight: 700, color: "#1E40AF" }}>Post Event</div>
-              </div>
-            </div>
-            <div style={{ fontSize: 12, color: C.textGray, marginTop: 8 }}>
-              Brand Integration includes full 4–6 week presence — not just the event day
-            </div>
-          </div>
         </div>
 
         {/* Exclusivity tags */}
