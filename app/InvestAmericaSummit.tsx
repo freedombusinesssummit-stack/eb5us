@@ -376,34 +376,31 @@ function SpeakerVideos() {
           Real sessions from previous FBS editions — the format, depth, and audience engagement your brand will be featured alongside.
         </p>
 
-        {/* Videos — vertical portrait format like sponsored cards */}
+        {/* Videos — 16:9 matching actual video aspect ratio */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, marginBottom: 48 }}>
           {videos.map(({ id, name, desc, tag }) => (
-            <div key={id} style={{ borderRadius: 20, overflow: "hidden", background: C.navy, boxShadow: "0 8px 32px rgba(0,0,0,0.15)", position: "relative", aspectRatio: "9/16" }}>
-              {/* Video fills entire card */}
-              <iframe
-                src={`https://player.mux.com/${id}?autoplay=false&preload=metadata`}
-                style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", display: "block" }}
-                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
-                allowFullScreen
-              />
-              {/* Sponsored badge top-left */}
-              <div style={{ position: "absolute", top: 14, left: 14, zIndex: 10, pointerEvents: "none" }}>
-                <span style={{ background: "rgba(0,0,0,0.75)", color: "#fff", fontSize: 11, fontWeight: 700, padding: "4px 12px", borderRadius: 999, backdropFilter: "blur(4px)" }}>
-                  FBS Summit
-                </span>
+            <div key={id} style={{ borderRadius: 16, overflow: "hidden", background: "#000", boxShadow: "0 8px 32px rgba(0,0,0,0.18)", position: "relative" }}>
+              {/* 16:9 video — no black bars */}
+              <div style={{ position: "relative", paddingBottom: "56.25%", background: "#000" }}>
+                <iframe
+                  src={`https://player.mux.com/${id}?autoplay=false&preload=metadata`}
+                  style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", display: "block" }}
+                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
+                  allowFullScreen
+                />
               </div>
-              {/* Bottom overlay plaque */}
+              {/* Branded bottom bar */}
               <div style={{
-                position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 10,
-                background: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 60%, transparent 100%)",
-                padding: "40px 18px 18px",
-                pointerEvents: "none",
+                background: C.navy,
+                padding: "12px 16px",
+                display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
               }}>
-                <div style={{ fontSize: 14, fontWeight: 800, color: "#fff", marginBottom: 4, lineHeight: 1.3 }}>{name}</div>
-                <div style={{ fontSize: 12, color: "rgba(255,255,255,0.6)", marginBottom: 10 }}>{desc}</div>
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ background: C.heroRed, color: "#fff", fontSize: 9, fontWeight: 800, padding: "3px 10px", borderRadius: 4, letterSpacing: 1, textTransform: "uppercase" }}>{tag}</span>
+                <div style={{ minWidth: 0 }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginBottom: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{name}</div>
+                  <div style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>{desc}</div>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: 6, flexShrink: 0 }}>
+                  <span style={{ background: C.heroRed, color: "#fff", fontSize: 9, fontWeight: 800, padding: "3px 8px", borderRadius: 4, letterSpacing: 1, textTransform: "uppercase" }}>{tag}</span>
                   <div style={{ width: 24, height: 24, borderRadius: "50%", background: C.green, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 8, fontWeight: 800 }}>FS</div>
                 </div>
               </div>
