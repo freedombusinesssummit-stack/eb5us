@@ -376,25 +376,29 @@ function SpeakerVideos() {
           Real sessions from previous FBS editions — the format, depth, and audience engagement your brand will be featured alongside.
         </p>
 
-        {/* Videos — 16:9 matching actual video aspect ratio */}
+        {/* Videos — 9:16 vertical, iframe oversized to clip mux letterbox */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, marginBottom: 48 }}>
           {videos.map(({ id, name, desc, tag }) => (
-            <div key={id} style={{ borderRadius: 16, overflow: "hidden", background: "#000", boxShadow: "0 8px 32px rgba(0,0,0,0.18)", position: "relative" }}>
-              {/* 16:9 video — no black bars */}
-              <div style={{ position: "relative", paddingBottom: "56.25%", background: "#000" }}>
+            <div key={id} style={{ borderRadius: 16, overflow: "hidden", background: "#000", boxShadow: "0 8px 32px rgba(0,0,0,0.18)", display: "flex", flexDirection: "column" }}>
+              {/* 9:16 container — iframe oversized horizontally to push mux bars outside */}
+              <div style={{ position: "relative", width: "100%", paddingBottom: "177.78%", overflow: "hidden", background: "#000", flexShrink: 0 }}>
                 <iframe
                   src={`https://player.mux.com/${id}?autoplay=false&preload=metadata`}
-                  style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", display: "block" }}
+                  style={{
+                    position: "absolute",
+                    top: "50%", left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    width: "180%",
+                    height: "180%",
+                    border: "none",
+                    display: "block",
+                  }}
                   allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
                   allowFullScreen
                 />
               </div>
               {/* Branded bottom bar */}
-              <div style={{
-                background: C.navy,
-                padding: "12px 16px",
-                display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
-              }}>
+              <div style={{ background: C.navy, padding: "12px 16px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
                 <div style={{ minWidth: 0 }}>
                   <div style={{ fontSize: 13, fontWeight: 700, color: "#fff", marginBottom: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{name}</div>
                   <div style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>{desc}</div>
