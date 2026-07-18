@@ -80,12 +80,12 @@ function NavBar() {
 }
 
 function Hero() {
-  const t = useCountdown("2026-07-27T11:00:00-04:00");
+  const t = useCountdown("2026-08-28T11:00:00-04:00");
   return (
     <section style={{ background: C.bg, paddingTop: 64, borderBottom: `1px solid ${C.border}` }}>
       <div style={{ maxWidth: 960, margin: "0 auto", padding: "72px 40px 64px" }}>
         <div style={{ display: "flex", gap: 10, marginBottom: 28, flexWrap: "wrap" }}>
-          <Pill dark>July 27–28, 2026</Pill>
+          <Pill dark>August 28–29, 2026</Pill>
           <Pill dark>💻 Virtual Event</Pill>
           <Pill dark>🌐 Worldwide Online</Pill>
         </div>
@@ -546,7 +546,7 @@ function Agenda() {
 
   const days: Record<number, { date: string; time: string; sessions: { time: string; type: string; dur: string; title: string; tag: string | null }[] }> = {
     1: {
-      date: "July 27, 2026",
+      date: "August 28, 2026",
       time: "11:00 AM – 3:25 PM Eastern Time",
       sessions: [
         { time: "11:00 AM", type: "Keynote", dur: "45 min", title: "EB-5 in 2026: What Changed, What Didn't, and What You Must Know Before Investing", tag: "EB-5 Foundation" },
@@ -557,7 +557,7 @@ function Agenda() {
       ],
     },
     2: {
-      date: "July 28, 2026",
+      date: "August 29, 2026",
       time: "11:00 AM – 3:25 PM Eastern Time",
       sessions: [
         { time: "11:00 AM", type: "Keynote", dur: "45 min", title: "The E-2 Playbook: Franchises, Acquisitions & Startups That Qualify", tag: "E-2 Deep Dive" },
@@ -576,7 +576,7 @@ function Agenda() {
       <div style={{ maxWidth: 960, margin: "0 auto" }}>
         <GreenLabel>Summit Agenda</GreenLabel>
         <h2 style={{ fontSize: 36, fontWeight: 800, color: C.text, marginBottom: 8, letterSpacing: -0.5 }}>
-          July 27–28, 2026 · 2-Day Format
+          August 28–29, 2026 · 2-Day Format
         </h2>
         <p style={{ fontSize: 15, color: C.textGray, marginBottom: 28 }}>
           Virtual · Worldwide Online · 5 sessions per day
@@ -592,7 +592,7 @@ function Agenda() {
               color: activeDay === d ? "#fff" : C.textGray,
               transition: "all 0.15s",
             }}>
-              Day {d} — {d === 1 ? "July 27" : "July 28"}
+              Day {d} — {d === 1 ? "August 28" : "August 29"}
             </button>
           ))}
         </div>
